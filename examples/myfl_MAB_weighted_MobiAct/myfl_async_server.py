@@ -57,6 +57,10 @@ class Server(fedavg.Server):
         if hasattr(Config().server, 'staleness_bound'):
                 self.staleness = Config().server.staleness_bound
 
+        # 完成MBA所需的list
+        self.training_staleness = []
+        self.waiting_staleness = []
+        self.reward = []
     # 让ServerClients用本文件中的class初始化
     def start(self, port=Config().server.port):
         """ Start running the socket.io server. """
@@ -307,6 +311,9 @@ class Server(fedavg.Server):
                 # logging.info("client %d`s buffer length:%d",client_id,len(self.client_buffer[client_id]))
                 # logging.info("client %d`s model version:%d",client_id,update_model[1]['current_round'])
 
+
+    async def select_model_by_MAB(self):
+        logging.info("未完成的函数")
     # 当没有model上传时，向csv文件中写的内容
     async def write_results_in_file(self):
         self.total_training_time = self.total_training_time + self.TRound
@@ -434,7 +441,6 @@ class Server(fedavg.Server):
             await asyncio.sleep(0)
 
         return avg_update
-
 
     async def aggregate_weights(self, updates):
         """Aggregate the reported weight updates from the selected clients."""
