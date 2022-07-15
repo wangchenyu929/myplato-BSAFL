@@ -15,14 +15,11 @@ import MobiAct_dataloader
 import asyncio
 import pickle
 import sys
-import time
 
 import socketio
 import torch.nn.functional as F
 
 from aiohttp import web
-from collections import OrderedDict
-from select import select
 
 import sys
 sys.path.append("..")

@@ -57,8 +57,8 @@ class MobiAct(Dataset):
 		
 		sample_start = 0
 		for class_id in client_class_set:
-			read_path = './data/Annotated_Data/'+ str(self.class_set[class_id])+'/' + str(self.class_set[class_id]) + '_' + str(client_id) + '_1_annotated.csv'
-
+			# read_path = './data/Annotated_Data/'+ str(self.class_set[class_id])+'/' + str(self.class_set[class_id]) + '_' + str(client_id) + '_1_annotated.csv'
+			read_path = '../../../datasets/Annotated_Data/'+ str(self.class_set[class_id])+'/' + str(self.class_set[class_id]) + '_' + str(client_id) + '_1_annotated.csv'
 			# print(read_path)
 
 			temp_original_data = pd.read_csv(read_path)
