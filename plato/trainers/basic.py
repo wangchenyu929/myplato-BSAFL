@@ -1,0 +1,481 @@
+"""
+The training and testing loops for PyTorch.
+"""
+import asyncio
+import logging
+import multiprocessing as mp
+import os
+import time
+
+import numpy as np
+import torch
+import torch.nn as nn
+from opacus import GradSampleModule
+from opacus.privacy_engine import PrivacyEngine
+from opacus.validators import ModuleValidator
+
+from plato.config import Config
+from plato.models import registry as models_registry
+from plato.trainers import base
+from plato.utils import optimizers
+
+
+class Trainer(base.Trainer):
+    """A basic federated learning trainer, used by both the client and the server."""
+    def __init__(self, model=None):
+        """Initializing the trainer with the provided model.
+
+        Arguments:
+        model: The model to train.
+        client_id: The ID of the client using this trainer (optional).
+        """
+
+        """
+
+        """
+        logging.info("plato->trainers basic.py init()")
+        """
+
+        """
+        super().__init__()
+
+        if model is None:
+            model = models_registry.get()
+
+        # Use data parallelism if multiple GPUs are available and the configuration specifies it
+        if Config().is_parallel():
+            logging.info("Using Data Parallelism.")
+            # DataParallel will divide and allocate batch_size to all available GPUs
+            self.model = nn.DataParallel(model)
+        else:
+            self.model = model
+
+        if hasattr(Config().trainer, 'differential_privacy') and Config(
+        ).trainer.differential_privacy:
+            logging.info("Using differential privacy during training.")
+
+            errors = ModuleValidator.validate(self.model, strict=False)
+            if len(errors) > 0:
+                self.model = ModuleValidator.fix(self.model)
+                errors = ModuleValidator.validate(self.model, strict=False)
+                assert len(errors) == 0
+
+            self.model = GradSampleModule(self.model)
+
+    def zeros(self, shape):
+        """Returns a PyTorch zero tensor with the given shape."""
+        # This should only be called from a server
+        assert self.client_id == 0
+        return torch.zeros(shape)
+
+    def save_model(self, filename=None):
+        """Saving the model to a file."""
+        logging.info("plato->trainers basic.py save_model()")
+
+        model_name = Config().trainer.model_name
+        model_dir = Config().params['model_dir']
+
+        if not os.path.exists(model_dir):
+            os.makedirs(model_dir)
+
+        if filename is not None:
+            model_path = f'{model_dir}{filename}'
+        else:
+            model_path = f'{model_dir}{model_name}.pth'
+
+        """只保存了模型参数"""
+        torch.save(self.model.state_dict(), model_path)
+
+        if self.client_id == 0:
+            logging.info("[Server #%d] Model saved to %s.", os.getpid(),
+                         model_path)
+        else:
+            logging.info("[Client #%d] Model saved to %s.", self.client_id,
+                         model_path)
+
+    def load_model(self, filename=None):
+        """Loading pre-trained model weights from a file."""
+        logging.info("plato->trainers basic.py load_model()")
+
+        model_dir = Config().params['pretrained_model_dir']
+        model_name = Config().trainer.model_name
+
+        if filename is not None:
+            model_path = f'{model_dir}{filename}'
+        else:
+            model_path = f'{model_dir}{model_name}.pth'
+
+        if self.client_id == 0:
+            logging.info("[Server #%d] Loading a model from %s.", os.getpid(),
+                         model_path)
+        else:
+            logging.info("[Client #%d] Loading a model from %s.",
+                         self.client_id, model_path)
+
+        self.model.load_state_dict(torch.load(model_path))
+
+    def train_process(self, config, trainset, sampler, cut_layer=None):
+        """The main training loop in a federated learning workload, run in
+          a separate process with a new CUDA context, so that CUDA memory
+          can be released after the training completes.
+
+        Arguments:
+        self: the trainer itself.
+        config: a dictionary of configuration parameters.
+        trainset: The training dataset.
+        sampler: the sampler that extracts a partition for this client.
+        cut_layer (optional): The layer which training should start from.
+        """
+        logging.info("plato->trainers basic.py train_process()")
+
+        if 'use_wandb' in config:
+            import wandb
+
+            run = wandb.init(project="plato",
+                             group=str(config['run_id']),
+                             reinit=True)
+
+        try:
+            custom_train = getattr(self, "train_model", None)
+
+            if callable(custom_train):
+                self.train_model(config, trainset, sampler.get(), cut_layer)
+            else:
+                log_interval = 10
+                batch_size = config['batch_size']
+
+                logging.info("[Client #%d] Loading the dataset.",
+                             self.client_id)
+                _train_loader = getattr(self, "train_loader", None)
+
+                if callable(_train_loader):
+                    train_loader = self.train_loader(batch_size, trainset,
+                                                     sampler.get(), cut_layer)
+                else:
+                    train_loader = torch.utils.data.DataLoader(
+                        dataset=trainset,
+                        shuffle=False,
+                        batch_size=batch_size,
+                        sampler=sampler.get())
+
+                #######################自己写的函数#######################
+                #for output_examples,output_labels in train_loader:
+                for i in range(1,5):
+                    logging.info("train_loader")
+                    logging.info(train_loader)
+                    
+                
+                
+                #######################自己写的函数#######################
+                iterations_per_epoch = np.ceil(len(trainset) /
+                                               batch_size).astype(int)
+                epochs = config['epochs']
+
+                # Sending the model to the device used for training
+                self.model.to(self.device)
+                self.model.train()
+
+                # Initializing the loss criterion
+                _loss_criterion = getattr(self, "loss_criterion", None)
+                if callable(_loss_criterion):
+                    loss_criterion = self.loss_criterion(self.model)
+                else:
+                    loss_criterion = nn.CrossEntropyLoss()
+
+                # Initializing the optimizer
+                get_optimizer = getattr(self, "get_optimizer",
+                                        optimizers.get_optimizer)
+                optimizer = get_optimizer(self.model)
+
+                # Initializing the learning rate schedule, if necessary
+                if hasattr(config, 'lr_schedule'):
+                    lr_schedule = optimizers.get_lr_schedule(
+                        optimizer, iterations_per_epoch, train_loader)
+                else:
+                    lr_schedule = None
+
+                if 'differential_privacy' in config and config[
+                        'differential_privacy']:
+                    privacy_engine = PrivacyEngine(accountant='rdp',
+                                                   secure_mode=False)
+
+                    self.model, optimizer, train_loader = privacy_engine.make_private_with_epsilon(
+                        module=self.model,
+                        optimizer=optimizer,
+                        data_loader=train_loader,
+                        target_epsilon=config['dp_epsilon']
+                        if 'dp_epsilon' in config else 10.0,
+                        target_delta=config['dp_delta']
+                        if 'dp_delta' in config else 1e-5,
+                        epochs=epochs,
+                        max_grad_norm=config['dp_max_grad_norm']
+                        if 'max_grad_norm' in config else 1.0,
+                    )
+
+                for epoch in range(1, epochs + 1):
+                    for batch_id, (examples,
+                                   labels) in enumerate(train_loader):
+                        examples, labels = examples.to(self.device), labels.to(
+                            self.device)
+                        if 'differential_privacy' in config and config[
+                                'differential_privacy']:
+                            optimizer.zero_grad(set_to_none=True)
+                        else:
+                            optimizer.zero_grad()
+
+                        if cut_layer is None:
+                            outputs = self.model(examples)
+                        else:
+                            outputs = self.model.forward_from(
+                                examples, cut_layer)
+
+                        loss = loss_criterion(outputs, labels)
+
+                        loss.backward()
+                        optimizer.step()
+
+                        if batch_id % log_interval == 0:
+                            if self.client_id == 0:
+                                logging.info(
+                                    "[Server #{}] Epoch: [{}/{}][{}/{}]\tLoss: {:.6f}"
+                                    .format(os.getpid(), epoch, epochs,
+                                            batch_id, len(train_loader),
+                                            loss.data.item()))
+                            else:
+                                if hasattr(config, 'use_wandb'):
+                                    wandb.log({"batch loss": loss.data.item()})
+
+                                logging.info(
+                                    "[Client #{}] Epoch: [{}/{}][{}/{}]\tLoss: {:.6f}"
+                                    .format(self.client_id, epoch, epochs,
+                                            batch_id, len(train_loader),
+                                            loss.data.item()))
+
+                    if lr_schedule is not None:
+                        lr_schedule.step()
+
+                    if hasattr(optimizer, "params_state_update"):
+                        optimizer.params_state_update()
+
+        except Exception as training_exception:
+            logging.info("Training on client #%d failed.", self.client_id)
+            raise training_exception
+
+        if 'max_concurrency' in config:
+            self.model.cpu()
+            model_type = config['model_name']
+            filename = f"{model_type}_{self.client_id}_{config['run_id']}.pth"
+            self.save_model(filename)
+
+        if 'use_wandb' in config:
+            run.finish()
+
+    def train(self, trainset, sampler, cut_layer=None) -> float:
+        """The main training loop in a federated learning workload.
+
+        Arguments:
+        trainset: The training dataset.
+        sampler: the sampler that extracts a partition for this client.
+        cut_layer (optional): The layer which training should start from.
+
+        Returns:
+        float: Elapsed time during training.
+        """
+        logging.info("plato->trainers basic.py train()")
+
+        config = Config().trainer._asdict()
+        config['run_id'] = Config().params['run_id']
+
+        if 'max_concurrency' in config:
+            self.start_training()
+            tic = time.perf_counter()
+
+            if mp.get_start_method(allow_none=True) != 'spawn':
+                mp.set_start_method('spawn', force=True)
+
+            train_proc = mp.Process(target=self.train_process,
+                                    args=(config, trainset, sampler,
+                                          cut_layer))
+            train_proc.start()
+            train_proc.join()
+
+            model_name = Config().trainer.model_name
+            filename = f"{model_name}_{self.client_id}_{Config().params['run_id']}.pth"
+
+            try:
+                self.load_model(filename)
+            except OSError as error:  # the model file is not found, training failed
+                if 'max_concurrency' in config:
+                    self.run_sql_statement(
+                        "DELETE FROM trainers WHERE run_id = (?)",
+                        (self.client_id, ))
+                raise ValueError(
+                    f"Training on client {self.client_id} failed.") from error
+
+            toc = time.perf_counter()
+            self.pause_training()
+        else:
+            tic = time.perf_counter()
+            self.train_process(config, trainset, sampler, cut_layer)
+            toc = time.perf_counter()
+
+        training_time = toc - tic
+
+        return training_time
+
+    def test_process(self, config, testset, sampler=None):
+        """The testing loop, run in a separate process with a new CUDA context,
+        so that CUDA memory can be released after the training completes.
+
+        Arguments:
+        config: a dictionary of configuration parameters.
+        testset: The test dataset.
+        sampler: The sampler that extracts a partition of the test dataset.
+        """
+        logging.info("plato->trainers basic.py test_process()")
+
+        self.model.to(self.device)
+        self.model.eval()
+
+        # Initialize accuracy to be returned to -1, so that the client can disconnect
+        # from the server when testing fails
+        accuracy = -1
+
+        try:
+            custom_test = getattr(self, "test_model", None)
+
+            if callable(custom_test):
+                accuracy = self.test_model(config, testset)
+            else:
+                if sampler is None:
+                    test_loader = torch.utils.data.DataLoader(
+                        testset,
+                        batch_size=config['batch_size'],
+                        shuffle=False)
+                # Use a testing set following the same distribution as the training set
+                else:
+                    test_loader = torch.utils.data.DataLoader(
+                        testset,
+                        batch_size=config['batch_size'],
+                        shuffle=False,
+                        sampler=sampler.get())
+
+                correct = 0
+                total = 0
+
+                with torch.no_grad():
+                    for examples, labels in test_loader:
+                        examples, labels = examples.to(self.device), labels.to(
+                            self.device)
+
+                        outputs = self.model(examples)
+
+                        _, predicted = torch.max(outputs.data, 1)
+                        total += labels.size(0)
+                        correct += (predicted == labels).sum().item()
+
+                accuracy = correct / total
+        except Exception as testing_exception:
+            logging.info("Testing on client #%d failed.", self.client_id)
+            raise testing_exception
+
+        self.model.cpu()
+
+        if 'max_concurrency' in config:
+            model_name = config['model_name']
+            filename = f"{model_name}_{self.client_id}_{config['run_id']}.acc"
+            self.save_accuracy(accuracy, filename)
+        else:
+            return accuracy
+
+    def test(self, testset, sampler=None) -> float:
+        """Testing the model using the provided test dataset.
+
+        Arguments:
+        testset: The test dataset.
+        sampler: The sampler that extracts a partition of the test dataset.
+        """
+        logging.info("plato->trainers basic.py test()")
+
+        config = Config().trainer._asdict()
+        config['run_id'] = Config().params['run_id']
+
+        if hasattr(Config().trainer, 'max_concurrency'):
+            self.start_training()
+
+            if mp.get_start_method(allow_none=True) != 'spawn':
+                mp.set_start_method('spawn', force=True)
+
+            proc = mp.Process(target=self.test_process,
+                              args=(
+                                  config,
+                                  testset,
+                                  sampler,
+                              ))
+            proc.start()
+            proc.join()
+
+            accuracy = -1
+            try:
+                model_name = Config().trainer.model_name
+                filename = f"{model_name}_{self.client_id}_{Config().params['run_id']}.acc"
+                accuracy = self.load_accuracy(filename)
+            except OSError as error:  # the model file is not found, training failed
+                raise ValueError(
+                    f"Testing on client #{self.client_id} failed.") from error
+
+            self.pause_training()
+        else:
+            accuracy = self.test_process(config, testset)
+
+        return accuracy
+
+    async def server_test(self, testset, sampler=None):
+        """Testing the model on the server using the provided test dataset.
+
+        Arguments:
+        testset: The test dataset.
+        sampler: The sampler that extracts a partition of the test dataset.
+        """
+        logging.info("plato->trainers basic.py server_test()")
+
+        config = Config().trainer._asdict()
+        config['run_id'] = Config().params['run_id']
+
+        self.model.to(self.device)
+        self.model.eval()
+
+        custom_test = getattr(self, "test_model", None)
+
+        if callable(custom_test):
+            return self.test_model(config, testset)
+
+        if sampler is None:
+            test_loader = torch.utils.data.DataLoader(
+                testset, batch_size=config['batch_size'], shuffle=False)
+        # Use a testing set following the same distribution as the training set
+        else:
+            test_loader = torch.utils.data.DataLoader(
+                testset,
+                batch_size=config['batch_size'],
+                shuffle=False,
+                sampler=sampler.get())
+
+        correct = 0
+        total = 0
+
+        with torch.no_grad():
+            for examples, labels in test_loader:
+                examples, labels = examples.to(self.device), labels.to(
+                    self.device)
+
+                outputs = self.model(examples)
+
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+
+                # Yield to other tasks in the server
+                await asyncio.sleep(0)
+
+        return correct / total
