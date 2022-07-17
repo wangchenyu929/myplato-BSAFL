@@ -29,7 +29,7 @@ class ServerEvents(socketio.AsyncNamespace):
     #pylint: disable=unused-argument
     async def on_connect(self, sid, environ):
         """ Upon a new connection from a client. """
-        logging.info("[Server #%d] A new client just connected.", os.getpid())
+        # logging.info("[Server #%d] A new client just connected.", os.getpid())
 
     async def on_disconnect(self, sid):
         """ Upon a disconnection event. """
@@ -181,8 +181,8 @@ class Server:
                 'sid': sid,
                 'last_contacted': time.perf_counter()
             }
-            logging.info("[Server #%d] New client with id #%d arrived.",
-                         os.getpid(), client_id)
+            # logging.info("[Server #%d] New client with id #%d arrived.",
+            #              os.getpid(), client_id)
         else:
             self.clients[client_id]['last_contacted'] = time.perf_counter()
             logging.info("[Server #%d] New contact from Client #%d received.",

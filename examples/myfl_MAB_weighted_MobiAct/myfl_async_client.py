@@ -156,7 +156,7 @@ class Client(simple.Client):
             self.finish_round = int(data['current_round']+(computing_time/data["TRound"]))
             if computing_time%data["TRound"] == 0:
                 self.finish_round-=1
-            logging.info("[Client #%d] computing_time:%d,finish_round:%d",self.client_id,computing_time,self.finish_round)
+            # logging.info("[Client #%d] computing_time:%d,finish_round:%d",self.client_id,computing_time,self.finish_round)
             # 开始训练了，所以设置为忙碌
             self.idle = 0
             
@@ -197,7 +197,7 @@ class Client(simple.Client):
                 # data = {'id': client_id,'current_round':self.current_round, 'TRound':self.TRound}
                 await self.sio.emit('client_payload_done', data)
                 self.idle = 1
-                logging.info("client #%d send model version:%d",self.client_id,data['current_round'])
+                # logging.info("client #%d send model version:%d",self.client_id,data['current_round'])
             # 如果这一轮训练不完则先存到reality_finish中
             else:    
                 await self.sio.emit('client_payload_done', self.client_id)

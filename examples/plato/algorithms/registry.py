@@ -43,7 +43,7 @@ def get(trainer=None):
     algorithm_type = Config().algorithm.type
 
     if algorithm_type in registered_algorithms:
-        logging.info("Algorithm: %s", algorithm_type)
+        # logging.info("Algorithm: %s", algorithm_type)
         registered_alg = registered_algorithms[algorithm_type](trainer)
         return registered_alg
     else:

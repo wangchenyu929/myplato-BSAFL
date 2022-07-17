@@ -43,24 +43,24 @@ def run(client_id,
         server.configure()
         client.configure()
 
-        logging.info("Starting an edge server as client #%d on port %d",
-                     Config().args.id,
-                     Config().args.port)
+        # logging.info("Starting an edge server as client #%d on port %d",
+        #              Config().args.id,
+        #              Config().args.port)
         asyncio.ensure_future(client.start_client())
 
-        logging.info("Starting an edge server as server #%d on port %d",
-                     os.getpid(),
-                     Config().args.port)
+        # logging.info("Starting an edge server as server #%d on port %d",
+        #              os.getpid(),
+        #              Config().args.port)
         server.start(port=Config().args.port)
 
     else:
         if client is None:
             client = client_registry.get()
-            logging.info("Starting a %s client #%d.",
-                         Config().clients.type, client_id)
+            # logging.info("Starting a %s client #%d.",
+            #              Config().clients.type, client_id)
         else:
             client.client_id = client_id
-            logging.info("Starting a custom client #%d", client_id)
+            # logging.info("Starting a custom client #%d", client_id)
 
         client.configure()
 

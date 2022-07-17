@@ -41,7 +41,7 @@ class ClientEvents(socketio.AsyncClientNamespace):
     #pylint: disable=unused-argument
     async def on_connect(self):
         """ Upon a new connection to the server. """
-        logging.info("[Client #%d] Connected to the server.", self.client_id)
+        # logging.info("[Client #%d] Connected to the server.", self.client_id)
 
     # pylint: disable=protected-access
     async def on_disconnect(self):

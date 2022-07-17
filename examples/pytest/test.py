@@ -2,11 +2,11 @@ import pandas as pd
 import numpy as np
 
 
-coll_class = np.zeros((2,3,2,2))
-read_path = 'test.csv'
-temp_original_data = pd.read_csv(read_path)
-original_X = np.array(temp_original_data.iloc[list(range(0,200)),[2,5]]).reshape(20,20)
-print(original_X)
+# coll_class = np.zeros((2,3,2,2))
+# read_path = 'test.csv'
+# temp_original_data = pd.read_csv(read_path)
+# original_X = np.array(temp_original_data.iloc[list(range(0,200)),[2,5]]).reshape(20,20)
+# print(original_X)
 # temp_original_X = temp_original_data.iloc([1,2],[2,5]).reshape(2,2)
 # temp_original_y = temp_original_data.iloc([1,2],[3,6]).reshape(2,2)
 # temp_original_z = temp_original_data.iloc([1,2],[4,7]).reshape(2,2)
@@ -22,3 +22,6 @@ print(original_X)
 # coll_class[1][2]=temp_original_z
 
 # coll_class
+
+for i in range(1,5):
+    print(i)

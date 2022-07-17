@@ -36,13 +36,27 @@ class Server(fedavg.Server):
         # logging.info("########myfl_async_server.py init()########")
         super().__init__(model=model, algorithm=algorithm, trainer=trainer)
         # server理论上的时间片值
-        self.TRound = 200
+
+        self.TRound = 100
+
+        # 完成MBA所需的list
+        self.MAB = []
+
         # 用来记录当前轮所有client的buffer状态
         # 因为将buffer放在每个client端会因为通信问题准确率不增长，所以暂时放在server端
         self.client_buffer = []
         # 因为下标是从0开始的，但是client id是从1开始的，所以把第0个位置空出来
         for i in range(self.total_clients+1):
+            # 要注意list下标是从0开始的
             self.client_buffer.append([])
+            if i != 0:
+                MAB_dict = {}
+                MAB_dict['client_id']=i
+                MAB_dict['training_staleness']=-1
+                MAB_dict['waiting_staleness']=-1
+                MAB_dict['reward']=0
+                MAB_dict['selected_number']=0
+                self.MAB.append(MAB_dict)
         # 每轮要聚合的client数
         self.buffer_per_round = 10
         # 没有训练完，但已收到回应的client
@@ -57,10 +71,8 @@ class Server(fedavg.Server):
         if hasattr(Config().server, 'staleness_bound'):
                 self.staleness = Config().server.staleness_bound
 
-        # 完成MBA所需的list
-        self.training_staleness = []
-        self.waiting_staleness = []
-        self.reward = []
+
+
     # 让ServerClients用本文件中的class初始化
     def start(self, port=Config().server.port):
         """ Start running the socket.io server. """
@@ -214,9 +226,9 @@ class Server(fedavg.Server):
                 payload_size = sys.getsizeof(pickle.dumps(
                     self.client_payload[sid]))
 
-            logging.info(
-                "[Server #%d] Received %s MB of payload data from client #%d.",
-                os.getpid(), round(payload_size / 1024**2, 2), data['id'])
+            # logging.info(
+            #     "[Server #%d] Received %s MB of payload data from client #%d.",
+            #     os.getpid(), round(payload_size / 1024**2, 2), data['id'])
 
             self.client_payload[sid] = self.inbound_processor.process(
                 self.client_payload[sid])
@@ -235,7 +247,8 @@ class Server(fedavg.Server):
             print("All client reports received. Processing",self.response_complete)
             
             # 要从buffer中选模型
-            await self.select_model()
+            # await self.select_model()
+            await self.select_model_by_MAB()
             self.response_uncomplete = []
             self.response_complete = []
       
@@ -308,12 +321,67 @@ class Server(fedavg.Server):
                 update_model =  self.client_buffer[client_id].pop()
                 self.updates.append((update_model[0],update_model[2]))
                 self.reporting_clients.append(client_id)
-                # logging.info("client %d`s buffer length:%d",client_id,len(self.client_buffer[client_id]))
-                # logging.info("client %d`s model version:%d",client_id,update_model[1]['current_round'])
 
 
+    # 用MAB的方法来选择client
     async def select_model_by_MAB(self):
-        logging.info("未完成的函数")
+        # 暂未考虑staleness bound
+        # 对reward进行排序
+        waiting_to_sort = self.MAB
+        sorted_MAB = sorted(waiting_to_sort, key=lambda waiting_to_sort: waiting_to_sort['reward'],reverse=True)
+        logging.info(sorted_MAB)
+
+
+        # 选reward比较大的前buffer_per_round个client
+
+        for i,MAB_Dict in enumerate(sorted_MAB):
+            # 只取前buffer_per_round个
+            client_id = MAB_Dict['client_id']
+            # logging.info("MAB client id:%d",client_id)
+            if len(self.client_buffer[client_id]) != 0 and i+1 <= self.buffer_per_round:
+                update_model =  self.client_buffer[client_id].pop()
+                self.updates.append((update_model[0],update_model[2]))
+                self.reporting_clients.append(client_id)
+                # 更新对应client的staleness
+                sorted_MAB[i]['training_staleness'] = int(math.ceil(client_id*10/self.TRound))-1
+                sorted_MAB[i]['selected_number'] += 1
+
+        # 计算reward所需的所有client的e^training_staleness
+        # 同时将旧reward清0
+        e_ts = 0
+        for i,MAB_Dict in enumerate(sorted_MAB):
+            if sorted_MAB[i]['training_staleness'] != -1:
+                e_ts += math.exp(sorted_MAB[i]['training_staleness'])
+            self.MAB[i]['reward'] = 0
+            
+        # 计算reward
+        for i,MAB_Dict in enumerate(sorted_MAB):
+
+            # 先统一计算exploration
+            # 第一轮的log(t)=0，且Nt=0
+            exploration = 0
+            if  self.MAB[i]['selected_number'] == 0:
+                # sorted_MAB[selected_client_num]['reward'] = 1
+                if self.current_round == 1:
+                    exploration = 1
+                else:
+                    exploration = 10000
+            else:
+                exploration = math.sqrt(math.log(self.current_round)/self.MAB[i]['selected_number'])
+                # sorted_MAB[selected_client_num]['reward'] = math.sqrt(math.log(self.current_round)/sorted_MAB[selected_client_num]['selected_number'])
+            
+            # 计算exploitation
+            # training_staleness中无内容
+            if self.MAB[i]['training_staleness'] == 0 or (self.current_round+1)%self.MAB[i]['training_staleness'] == 0:
+                self.MAB[i]['reward'] = math.exp(self.MAB[i]['training_staleness'])/e_ts + 1 + exploration
+            
+            else:
+                sorted_MAB[i]['reward'] = exploration
+        logging.info("self.reporting_clients:")
+        logging.info(self.reporting_clients)
+
+
+
     # 当没有model上传时，向csv文件中写的内容
     async def write_results_in_file(self):
         self.total_training_time = self.total_training_time + self.TRound
@@ -411,7 +479,7 @@ class Server(fedavg.Server):
             raw_weight = num_samples / self.total_samples * (
                 (similarity + 1) / 2 * similarity_weight +
                 staleness_factor * staleness_weight)
-            logging.info('[Client %d] raw weight = %s', report.client_id, raw_weight)
+            # logging.info('[Client %d] raw weight = %s', report.client_id, raw_weight)
 
             aggregation_weights.append(raw_weight)
 
@@ -420,8 +488,8 @@ class Server(fedavg.Server):
             i / sum(aggregation_weights) for i in aggregation_weights
         ]
 
-        logging.info('All client normalized weights: %s',
-                     aggregation_weights)
+        # logging.info('All client normalized weights: %s',
+        #              aggregation_weights)
 
         # Perform weighted averaging
         avg_update = {
