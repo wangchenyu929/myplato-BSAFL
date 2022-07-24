@@ -5,7 +5,6 @@ import sys
 import pickle
 import time
 import os
-import MobiAct_dataloader
 import MobiAct_noniid
 
 from dataclasses import dataclass
@@ -46,7 +45,7 @@ class Client(simple.Client):
         """ Upon receiving all the new payload from the server. """
         # logging.info("my payload_done()")
         # computing_time = 10*random.randint(1,10)
-        computing_time = 10*self.client_id
+        computing_time = 2*self.client_id
         # computing_time = 0
         #如果computing_time注定大于TRound，则根本不用开始训练
         if computing_time > data["TRound"] :

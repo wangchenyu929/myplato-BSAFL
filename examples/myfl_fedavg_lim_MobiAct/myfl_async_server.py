@@ -55,7 +55,7 @@ class Server(fedavg.Server):
         super().__init__(model=model, algorithm=algorithm, trainer=trainer)
 
         # 这是模拟的Tround
-        self.TRound = 100
+        self.TRound = 30
         # 用来记录模拟训练时间
         self.total_training_time = 0
         # 聚合的总client数

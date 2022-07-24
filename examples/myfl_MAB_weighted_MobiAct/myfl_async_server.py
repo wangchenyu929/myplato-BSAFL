@@ -9,6 +9,7 @@ import torch.nn.functional as F
 import torch
 import copy
 import math
+import random
 
 from aiohttp import web
 import MobiAct_dataloader
@@ -37,7 +38,7 @@ class Server(fedavg.Server):
         super().__init__(model=model, algorithm=algorithm, trainer=trainer)
         # server理论上的时间片值
 
-        self.TRound = 100
+        self.TRound = 30
 
         # 完成MBA所需的list
         self.MAB = []
@@ -249,6 +250,7 @@ class Server(fedavg.Server):
             # 要从buffer中选模型
             # await self.select_model()
             await self.select_model_by_MAB()
+            # await self.test_select_model()
             self.response_uncomplete = []
             self.response_complete = []
       
@@ -256,6 +258,36 @@ class Server(fedavg.Server):
                 await self.process_reports()
             await self.wrap_up()
             await self.select_clients()
+
+
+    async def test_select_model(self):
+        if self.current_round == 1:
+            buffer_selected_client = [1,2,3,4,5,6,7,8,9,10]
+        elif self.current_round == 2:
+            buffer_selected_client = [11,12,13,14,15,16,17,18,19,20]
+        elif self.current_round == 3:
+            buffer_selected_client = [21,22,23,24,25,26,27,28,29,30]
+        elif self.current_round == 4:
+            buffer_selected_client = [31,32,33,34,35,36,37,38,39,40]
+        elif self.current_round == 5:
+            buffer_selected_client = [41,42,43,44,45,46,47,48,49,50]
+        elif self.current_round == 6:
+            buffer_selected_client = [21,22,23,24,25,26,27,28,29,30]
+        elif self.current_round == 7:
+            buffer_selected_client = [1,2,3,4,5,6,7,8,9,10]
+        
+        print("buffer_selected_client:",buffer_selected_client)
+
+        # 从已选择的client的buffer中取模型
+        for client_id in buffer_selected_client:
+            # 如果某个client的buffer不为0，则取出最新模型进行聚合
+            # logging.info("client %d`s buffer length:%d",client_id,len(self.client_buffer[client_id]))
+            if len(self.client_buffer[client_id]) != 0:
+                update_model =  self.client_buffer[client_id].pop()
+                self.updates.append((update_model[0],update_model[2]))
+                self.reporting_clients.append(client_id)
+
+
 
     # 从buffer中挑模型
     async def select_model(self):
@@ -313,6 +345,7 @@ class Server(fedavg.Server):
                                    replace=False).tolist()
         print("buffer_selected_client:",buffer_selected_client)
 
+
         # 从已选择的client的buffer中取模型
         for client_id in buffer_selected_client:
             # 如果某个client的buffer不为0，则取出最新模型进行聚合
@@ -325,9 +358,29 @@ class Server(fedavg.Server):
 
     # 用MAB的方法来选择client
     async def select_model_by_MAB(self):
-        # 暂未考虑staleness bound
+        # staleness bound
+        buffer_client_id = -1
+        for client_buffer in self.client_buffer:
+            
+            buffer_client_id+=1
+
+            # 先处理staleness
+            for buffer_message in client_buffer:
+                # 此模型超过staleness
+                # logging.info("before stalness:client %d`s buffer length:%d",buffer_message[1]['id'],len(self.client_buffer[buffer_message[1]['id']]))
+                #随机生成每个client的staleness bound
+                staleness_bound = self.staleness+int((buffer_client_id*10)/self.TRound)
+                if self.current_round-buffer_message[1]['current_round']>staleness_bound:
+                # if self.current_round-buffer_message[1]['current_round']>self.staleness:
+                    
+                    # logging.info("client %d has a stale model,which version is :%d,stalness bound is %d",buffer_message[1]['id'],buffer_message[1]['current_round'],staleness_bound)
+                    # logging.info("client %d has a stale model,which version is :%d",buffer_message[1]['id'],buffer_message[1]['current_round'])
+                    client_buffer.remove(buffer_message)
+                    # logging.info("after stalness:client %d`s buffer length:%d",buffer_message[1]['id'],len(self.client_buffer[buffer_message[1]['id']]))
+
         # 对reward进行排序
         waiting_to_sort = self.MAB
+        random.shuffle(waiting_to_sort)
         sorted_MAB = sorted(waiting_to_sort, key=lambda waiting_to_sort: waiting_to_sort['reward'],reverse=True)
         logging.info(sorted_MAB)
 
@@ -343,7 +396,7 @@ class Server(fedavg.Server):
                 self.updates.append((update_model[0],update_model[2]))
                 self.reporting_clients.append(client_id)
                 # 更新对应client的staleness
-                sorted_MAB[i]['training_staleness'] = int(math.ceil(client_id*10/self.TRound))-1
+                sorted_MAB[i]['training_staleness'] = int(math.ceil(client_id*2/self.TRound))-1
                 sorted_MAB[i]['selected_number'] += 1
 
         # 计算reward所需的所有client的e^training_staleness
@@ -377,6 +430,7 @@ class Server(fedavg.Server):
             
             else:
                 sorted_MAB[i]['reward'] = exploration
+        
         logging.info("self.reporting_clients:")
         logging.info(self.reporting_clients)
 

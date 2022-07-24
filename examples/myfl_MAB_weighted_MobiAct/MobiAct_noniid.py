@@ -38,15 +38,25 @@ class MobiAct(Dataset):
 		coll_class = np.zeros((144,1,30,30))
 		coll_label = np.zeros((144))
 		client_class_set = []
-		if client_id in [1,6,11,16,21,26,31,36,41,46]:
+		# if client_id in [1,2,3,4,5,6,7,8,9,10]:
+		# 	client_class_set = [0,1,2,3]
+		# elif client_id in [11,12,13,14,15,16,17,18,19,20]:
+		# 	client_class_set = [2,3,4,5]
+		# elif client_id in [21,22,23,24,25,26,27,28,29,30]:
+		# 	client_class_set = [4,5,6,7]	
+		# elif client_id in [31,32,33,34,35,36,37,38,39,40]:
+		# 	client_class_set = [6,7,8,9]
+		# elif client_id in [41,42,43,44,45,46,47,48,49,50]:
+		# 	client_class_set = [0,1,8,9]
+		if client_id in [1,6,11,16,21,26,31,41,9,46]:
 			client_class_set = [0,1,2,3]
-		elif client_id in [2,7,12,17,22,27,32,37,42,47]:
+		elif client_id in [2,7,12,17,22,27,37,42,19,47]:
 			client_class_set = [2,3,4,5]
-		elif client_id in [3,8,13,18,23,28,33,38,43,48]:
+		elif client_id in [3,8,13,18,23,28,38,43,29,48]:
 			client_class_set = [4,5,6,7]	
-		elif client_id in [4,9,14,19,24,29,34,39,44,49]:
+		elif client_id in [4,9,14,19,24,29,39,44,39,49]:
 			client_class_set = [6,7,8,9]
-		elif client_id in [5,10,15,20,25,30,35,40,45,50]:
+		elif client_id in [5,10,15,20,25,30,35,45,49,50]:
 			client_class_set = [0,1,8,9]
 		# client_class_set = [int((client_id-1)/10) *2,int((client_id-1)/10)*2+1]
 		# print("client id:",client_id,client_class_set)

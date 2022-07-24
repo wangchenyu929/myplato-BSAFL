@@ -89,8 +89,8 @@ class Client(simple.Client):
                          self.client_id, self.edge_server_id)
         else:
             await asyncio.sleep(5)
-            logging.info("[Client #%d] Contacting the central server.",
-                         self.client_id)
+            # logging.info("[Client #%d] Contacting the central server.",
+            #              self.client_id)
 
         self.sio = socketio.AsyncClient(reconnection=True)
         self.sio.register_namespace(
@@ -144,14 +144,14 @@ class Client(simple.Client):
             else:
 
                 await self.sio.emit('client_payload_done', self.client_id)
-                logging.info("[Client #%d] Client is still training" ,self.client_id)
+                # logging.info("[Client #%d] Client is still training" ,self.client_id)
             # 根据当前轮数更新buffer
             self.server_payload = None
             # await self.update_send_buffer(data)
        
         # 1代表空闲，则让client训练，训练完后更新buffer，然后发送
         elif self.idle == 1:
-            computing_time = 10*self.client_id
+            computing_time = 2*self.client_id
             # computing_time = 10*random.randint(1,10)
             self.finish_round = int(data['current_round']+(computing_time/data["TRound"]))
             if computing_time%data["TRound"] == 0:
