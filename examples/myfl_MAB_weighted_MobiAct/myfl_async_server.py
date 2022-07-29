@@ -38,7 +38,7 @@ class Server(fedavg.Server):
         super().__init__(model=model, algorithm=algorithm, trainer=trainer)
         # server理论上的时间片值
 
-        self.TRound = 30
+        self.TRound = 20
 
         # 完成MBA所需的list
         self.MAB = []
@@ -55,7 +55,7 @@ class Server(fedavg.Server):
                 MAB_dict['client_id']=i
                 MAB_dict['training_staleness']=-1
                 MAB_dict['waiting_staleness']=-1
-                MAB_dict['reward']=0
+                MAB_dict['reward']=1.0
                 MAB_dict['selected_number']=0
                 self.MAB.append(MAB_dict)
         # 每轮要聚合的client数
@@ -249,8 +249,10 @@ class Server(fedavg.Server):
             
             # 要从buffer中选模型
             # await self.select_model()
-            await self.select_model_by_MAB()
+            # await self.select_model_by_MAB()
+            # await self.select_model_by_staleness()
             # await self.test_select_model()
+            await self.select_model_by_probs_MAB()
             self.response_uncomplete = []
             self.response_complete = []
       
@@ -305,7 +307,7 @@ class Server(fedavg.Server):
                 # 此模型超过staleness
                 # logging.info("before stalness:client %d`s buffer length:%d",buffer_message[1]['id'],len(self.client_buffer[buffer_message[1]['id']]))
                 #随机生成每个client的staleness bound
-                staleness_bound = self.staleness+int((buffer_client_id*10)/self.TRound)
+                staleness_bound = self.staleness+int((buffer_client_id*2)/self.TRound)
                 if self.current_round-buffer_message[1]['current_round']>staleness_bound:
                 # if self.current_round-buffer_message[1]['current_round']>self.staleness:
                     
@@ -318,9 +320,9 @@ class Server(fedavg.Server):
             if len(client_buffer) != 0:
                 buffer_select.append(buffer_client_id)
                 # training_staleness是training time/TRound取上届再减1
-                training_staleness.append(int(math.ceil(buffer_client_id*10/self.TRound))-1)
+                training_staleness.append(int(math.ceil(buffer_client_id*2/self.TRound))-1)
                 # 都是取最新的模型
-                # waiting staleness是总staleness - waiting staleness
+                # waiting staleness是总staleness -  training staleness
                 w_s = self.current_round-client_buffer[-1][1]['current_round']-training_staleness[-1]
                 waiting_staleness.append(w_s)
         # 按照概率选择client
@@ -355,8 +357,77 @@ class Server(fedavg.Server):
                 self.updates.append((update_model[0],update_model[2]))
                 self.reporting_clients.append(client_id)
 
+    # 从buffer中挑模型
+    async def select_model_by_staleness(self):
+        buffer_client_id = -1
+        buffer_select = []
+        training_staleness = []
+        waiting_staleness = []
+        buffer_selected_client = []
+        probs = []
+        # 需要处理staleness
+        for client_buffer in self.client_buffer:
+            
+            buffer_client_id+=1
+
+            # 先处理staleness
+            for buffer_message in client_buffer:
+                # 此模型超过staleness
+                # logging.info("before stalness:client %d`s buffer length:%d",buffer_message[1]['id'],len(self.client_buffer[buffer_message[1]['id']]))
+                #随机生成每个client的staleness bound
+                staleness_bound = self.staleness+int((buffer_client_id*2)/self.TRound)
+                if self.current_round-buffer_message[1]['current_round']>staleness_bound:
+                # if self.current_round-buffer_message[1]['current_round']>self.staleness:
+                    
+                    # logging.info("client %d has a stale model,which version is :%d,stalness bound is %d",buffer_message[1]['id'],buffer_message[1]['current_round'],staleness_bound)
+                    # logging.info("client %d has a stale model,which version is :%d",buffer_message[1]['id'],buffer_message[1]['current_round'])
+                    client_buffer.remove(buffer_message)
+                    # logging.info("after stalness:client %d`s buffer length:%d",buffer_message[1]['id'],len(self.client_buffer[buffer_message[1]['id']]))
+
+            # 更新waiting staleness
+            if len(client_buffer) != 0:
+                buffer_select.append(buffer_client_id)
+                # training_staleness是training time/TRound取上届再减1
+                training_staleness.append(int(math.ceil(buffer_client_id*2/self.TRound))-1)
+                # 都是取最新的模型
+                # waiting staleness是总staleness -  training staleness
+                w_s = self.current_round-client_buffer[-1][1]['current_round']-training_staleness[-1]
+                waiting_staleness.append(w_s)
+        # 按照概率选择client
+        print("waiting_staleness:",waiting_staleness)
+        print("training_staleness:",training_staleness)
+        print("buffer_select:",buffer_select)
+
+        for i,client_id in enumerate(buffer_select):
+            prob_per_client = {}
+            prob_per_client['client_id'] = client_id
+            prob_per_client['prob'] = (training_staleness[i]+1)/(waiting_staleness[i]+1)
+            probs.append(prob_per_client)
+        print("probs",probs)
+
+        sorted_probs = sorted(probs, key=lambda probs: probs['prob'],reverse=True)
+
+        if len(buffer_select) <= self.buffer_per_round:
+            buffer_selected_client = buffer_select
+        else:
+            for i in range(10):
+                buffer_selected_client.append(sorted_probs[i]['client_id'])
+
+        print("buffer_selected_client:",buffer_selected_client)
+
+
+        # 从已选择的client的buffer中取模型
+        for client_id in buffer_selected_client:
+            # 如果某个client的buffer不为0，则取出最新模型进行聚合
+            # logging.info("client %d`s buffer length:%d",client_id,len(self.client_buffer[client_id]))
+            if len(self.client_buffer[client_id]) != 0:
+                update_model =  self.client_buffer[client_id].pop()
+                self.updates.append((update_model[0],update_model[2]))
+                self.reporting_clients.append(client_id)
+
 
     # 用MAB的方法来选择client
+    # 非概率选择
     async def select_model_by_MAB(self):
         # staleness bound
         buffer_client_id = -1
@@ -402,13 +473,13 @@ class Server(fedavg.Server):
         # 计算reward所需的所有client的e^training_staleness
         # 同时将旧reward清0
         e_ts = 0
-        for i,MAB_Dict in enumerate(sorted_MAB):
+        for i,MAB_Dict in enumerate(self.MAB):
             if sorted_MAB[i]['training_staleness'] != -1:
                 e_ts += math.exp(sorted_MAB[i]['training_staleness'])
             self.MAB[i]['reward'] = 0
             
         # 计算reward
-        for i,MAB_Dict in enumerate(sorted_MAB):
+        for i,MAB_Dict in enumerate(self.MAB):
 
             # 先统一计算exploration
             # 第一轮的log(t)=0，且Nt=0
@@ -418,21 +489,86 @@ class Server(fedavg.Server):
                 if self.current_round == 1:
                     exploration = 1
                 else:
-                    exploration = 10000
+                    exploration = 10
             else:
                 exploration = math.sqrt(math.log(self.current_round)/self.MAB[i]['selected_number'])
                 # sorted_MAB[selected_client_num]['reward'] = math.sqrt(math.log(self.current_round)/sorted_MAB[selected_client_num]['selected_number'])
             
             # 计算exploitation
             # training_staleness中无内容
-            if self.MAB[i]['training_staleness'] == 0 or (self.current_round+1)%self.MAB[i]['training_staleness'] == 0:
+            if self.MAB[i]['training_staleness'] == -1:
+                self.MAB[i]['reward'] = exploration
+            
+            elif self.MAB[i]['training_staleness'] == 0 or (self.current_round+1)%self.MAB[i]['training_staleness'] == 0:
                 self.MAB[i]['reward'] = math.exp(self.MAB[i]['training_staleness'])/e_ts + 1 + exploration
             
-            else:
-                sorted_MAB[i]['reward'] = exploration
-        
         logging.info("self.reporting_clients:")
         logging.info(self.reporting_clients)
+
+    # 用MAB的方法来选择client
+    # 概率选择
+    async def select_model_by_probs_MAB(self):
+        # 先不考虑处理staleness
+        reward_probs = []
+        for i in range (len(self.MAB)):
+            reward_probs.append(self.MAB[i]['reward'])
+        # 归一化
+        reward_probs = np.array(reward_probs)
+        reward_probs /= sum(reward_probs)
+        print("probility:",reward_probs)
+
+        buffer_selected_client = np.random.choice(self.clients_pool,
+                                   self.buffer_per_round,
+                                   p=reward_probs,
+                                   replace=False).tolist()
+        print("buffer_selected_client:",buffer_selected_client)
+
+        # 从已选择的client的buffer中取模型
+        for client_id in buffer_selected_client:
+            # 如果某个client的buffer不为0，则取出最新模型进行聚合
+            # logging.info("client %d`s buffer length:%d",client_id,len(self.client_buffer[client_id]))
+            if len(self.client_buffer[client_id]) != 0:
+                update_model =  self.client_buffer[client_id].pop()
+                self.updates.append((update_model[0],update_model[2]))
+                self.reporting_clients.append(client_id)
+                # 更新对应client的staleness
+                self.MAB[client_id-1]['training_staleness'] = int(math.ceil(client_id*2/self.TRound))-1
+                self.MAB[client_id-1]['selected_number'] += 1
+        print("self.reporting_clients:",self.reporting_clients)
+
+        # 计算reward所需的所有client的e^training_staleness
+        # 同时将旧reward清0
+        e_ts = 0
+        for i,MAB_Dict in enumerate(self.MAB):
+            if MAB_Dict['training_staleness'] != -1:
+                e_ts += math.exp(MAB_Dict['training_staleness'])
+            self.MAB[i]['reward'] = 0
+            
+        # 计算reward
+        for i,MAB_Dict in enumerate(self.MAB):
+
+            # 先统一计算exploration
+            # 第一轮的log(t)=0，且Nt=0
+            exploration = 0
+            if  MAB_Dict['selected_number'] == 0:
+                # sorted_MAB[selected_client_num]['reward'] = 1
+                if self.current_round == 1:
+                    exploration = 1
+                else:
+                    exploration = 10
+            else:
+                exploration = math.sqrt(math.log(self.current_round)/MAB_Dict['selected_number'])
+                # sorted_MAB[selected_client_num]['reward'] = math.sqrt(math.log(self.current_round)/sorted_MAB[selected_client_num]['selected_number'])
+            
+            # 计算exploitation
+            # training_staleness中无内容
+            if MAB_Dict['training_staleness'] == -1:
+                self.MAB[i]['reward'] = exploration
+            
+            elif MAB_Dict['training_staleness'] == 0 or (self.current_round+1)%MAB_Dict['training_staleness'] == 0:
+                self.MAB[i]['reward'] = math.exp(MAB_Dict['training_staleness'])/e_ts + 1 + exploration
+            
+
 
 
 
