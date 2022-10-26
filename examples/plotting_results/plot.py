@@ -11,7 +11,7 @@ def read_csv_to_dict(result_csv_file_list):
     result_dict1: Dict[str, List] = {}
     result_dict2: Dict[str, List] = {}
     result_dict3: Dict[str, List] = {}
-    # result_dict4: Dict[str, List] = {}
+    result_dict4: Dict[str, List] = {}
 
     # plot_pairs = Config().results.plot
     # plot_pairs = [x.strip() for x in plot_pairs.split(',')]
@@ -25,7 +25,7 @@ def read_csv_to_dict(result_csv_file_list):
                 result_dict1[item] = []
                 result_dict2[item] = []
                 result_dict3[item] = []
-                # result_dict4[item] = []
+                result_dict4[item] = []
 
     with open(result_csv_file_list[0], 'r') as f:
         reader = csv.DictReader(f)
@@ -53,17 +53,17 @@ def read_csv_to_dict(result_csv_file_list):
                 else:
                     result_dict3[item].append(float(row[item]))
 
-    # with open(result_csv_file_list[3], 'r') as f:
-    #     reader = csv.DictReader(f)
-    #     for row in reader:
-    #         for item in result_dict4:
-    #             if item in ('round', 'global_round'):
-    #                 result_dict4[item].append(int(row[item]))
-    #             else:
-    #                 result_dict4[item].append(float(row[item]))
+    with open(result_csv_file_list[3], 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            for item in result_dict4:
+                if item in ('round', 'global_round'):
+                    result_dict4[item].append(int(row[item]))
+                else:
+                    result_dict4[item].append(float(row[item]))
 
-    # return result_dict1,result_dict2,result_dict3,result_dict4
-    return result_dict1,result_dict2,result_dict3
+    return result_dict1,result_dict2,result_dict3,result_dict4
+    # return result_dict1,result_dict2,result_dict3
     # return result_dict1,result_dict2
 
 
@@ -71,10 +71,10 @@ def read_csv_to_dict(result_csv_file_list):
 def plot(x_label: str, x_value_list, y_label: str, y_value_list,figure_file_name: str):
     """Plot a figure."""
     fig, ax = plt.subplots()
-    ax.plot(x_value_list[0], y_value_list[0],color='green',label='fedavgLim')
-    ax.plot(x_value_list[1], y_value_list[1],color='blue',label='flWeighted')
-    ax.plot(x_value_list[2], y_value_list[2],color='red',label='newWeighted')
-    # ax.plot(x_value_list[3], y_value_list[3],color='black',label='alpha=3,beta=1')
+    ax.plot(x_value_list[0], y_value_list[0],color='#2878b5',label='FedAsync')
+    ax.plot(x_value_list[1], y_value_list[1],color='#9ac9db',label='FedAvg')
+    ax.plot(x_value_list[2], y_value_list[2],color='#f8ac8c',label='FedBuff')
+    ax.plot(x_value_list[3], y_value_list[3],color='#c82423',label='BSACS-FL')
     ax.set(xlabel=x_label, ylabel=y_label)
     ax.set_title('different TRound',loc=CENTER)
     ax.legend()
@@ -83,8 +83,8 @@ def plot(x_label: str, x_value_list, y_label: str, y_value_list,figure_file_name
 
 def plot_figures_from_dict(result_csv_file_list,result_dir: str):
     """Plot figures with dictionary of results."""
-    # result_dict1,result_dict2,result_dict3,result_dict4 = read_csv_to_dict(result_csv_file_list)
-    result_dict1,result_dict2,result_dict3 = read_csv_to_dict(result_csv_file_list)
+    result_dict1,result_dict2,result_dict3,result_dict4 = read_csv_to_dict(result_csv_file_list)
+    # result_dict1,result_dict2,result_dict3 = read_csv_to_dict(result_csv_file_list)
     # result_dict1,result_dict2 = read_csv_to_dict(result_csv_file_list)
 
     # plot_pairs = Config().results.plot
@@ -97,7 +97,7 @@ def plot_figures_from_dict(result_csv_file_list,result_dir: str):
         x_y_values1: Dict[str, List] = {}
         x_y_values2: Dict[str, List] = {}
         x_y_values3: Dict[str, List] = {}
-        # x_y_values4: Dict[str, List] = {}
+        x_y_values4: Dict[str, List] = {}
         for item in pair:
             label = {
                 'global_round': 'Global training round',
@@ -112,7 +112,7 @@ def plot_figures_from_dict(result_csv_file_list,result_dir: str):
             x_y_values1[label] = result_dict1[item]
             x_y_values2[label] = result_dict2[item]
             x_y_values3[label] = result_dict3[item]
-            # x_y_values4[label] = result_dict4[item]
+            x_y_values4[label] = result_dict4[item]
 
 
         x_label = x_y_labels[0]
@@ -121,17 +121,17 @@ def plot_figures_from_dict(result_csv_file_list,result_dir: str):
         x_value1 = x_y_values1[x_label]
         x_value2 = x_y_values2[x_label]
         x_value3 = x_y_values3[x_label]
-        # x_value4 = x_y_values4[x_label]
-        # x_value_list=[x_value1,x_value2,x_value3,x_value4]
-        x_value_list=[x_value1,x_value2,x_value3]
+        x_value4 = x_y_values4[x_label]
+        x_value_list=[x_value1,x_value2,x_value3,x_value4]
+        # x_value_list=[x_value1,x_value2,x_value3]
         # x_value_list=[x_value1,x_value2]
         
         y_value1 = x_y_values1[y_label]
         y_value2 = x_y_values2[y_label]
         y_value3 = x_y_values3[y_label]
-        # y_value4 = x_y_values4[y_label]
-        # y_value_list=[y_value1,y_value2,y_value3,y_value4]
-        y_value_list=[y_value1,y_value2,y_value3]
+        y_value4 = x_y_values4[y_label]
+        y_value_list=[y_value1,y_value2,y_value3,y_value4]
+        # y_value_list=[y_value1,y_value2,y_value3]
         # y_value_list=[y_value1,y_value2]
 
         plot(x_label, x_value_list, y_label, y_value_list,figure_file_name)
@@ -141,14 +141,14 @@ def main():
     """Plotting figures from the run-time results."""
 
 
-    result_csv_file1 =  'fedavgLim_100TRound_4class.csv'
-    result_csv_file2 =  'flWeighted_2staleness_100TRound.csv'
-    result_csv_file3 =  'new_weighted_Nstaleness_100TRound.csv'
-    # result_csv_file4 =  '3alpha_1beta.csv'
+    result_csv_file1 =  './exp1_performance_on_MobiAct/noniid/FedAsync_MobiAct_noniid.csv'
+    result_csv_file2 =  './exp1_performance_on_MobiAct/noniid/FedAvg_MobiAct_noniid.csv'
+    result_csv_file3 =  './exp1_performance_on_MobiAct/noniid/FedBuff_MobiAct_noniid.csv'
+    result_csv_file4 =  './exp1_performance_on_MobiAct/noniid/BSACS_MobiAct_noniid.csv'
 
 
-    # result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3,result_csv_file4]
-    result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3]
+    result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3,result_csv_file4]
+    # result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3]
     # result_csv_file_list=[result_csv_file1,result_csv_file2]
     result_dir = './'
     print("Plotting success.")
