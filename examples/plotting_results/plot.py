@@ -141,10 +141,10 @@ def main():
     """Plotting figures from the run-time results."""
 
 
-    result_csv_file1 =  './exp1_performance_on_MobiAct/noniid/FedAsync_MobiAct_noniid.csv'
-    result_csv_file2 =  './exp1_performance_on_MobiAct/noniid/FedAvg_MobiAct_noniid.csv'
-    result_csv_file3 =  './exp1_performance_on_MobiAct/noniid/FedBuff_MobiAct_noniid.csv'
-    result_csv_file4 =  './exp1_performance_on_MobiAct/noniid/BSACS_MobiAct_noniid.csv'
+    result_csv_file1 =  './exp2_Performance_on_classic_dataset/MNIST/FedAsync_MNIST_noniid.csv'
+    result_csv_file2 =  './exp2_Performance_on_classic_dataset/MNIST/FedAvg_MNIST_noniid.csv'
+    result_csv_file3 =  './exp2_Performance_on_classic_dataset/MNIST/FedBuff_MNIST_noniid.csv'
+    result_csv_file4 =  './exp2_Performance_on_classic_dataset/MNIST/BSACS_MNIST_noniid.csv'
 
 
     result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3,result_csv_file4]
