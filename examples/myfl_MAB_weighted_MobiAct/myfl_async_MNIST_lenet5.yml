@@ -16,7 +16,7 @@ server:
     port: 8000
 
     synchronous: true
-    periodic_interval: 60
+    periodic_interval: 20
 
     minimum_clients_aggregated: 2
     staleness_bound: 2
@@ -57,7 +57,7 @@ trainer:
     type: basic
 
     # The maximum number of training rounds
-    rounds: 500
+    rounds: 125
 
     # Whether the training should use multiple GPUs if available
     parallelized: true

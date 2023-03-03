@@ -76,7 +76,7 @@ def plot(x_label: str, x_value_list, y_label: str, y_value_list,figure_file_name
     ax.plot(x_value_list[2], y_value_list[2],color='#f8ac8c',label='FedBuff')
     ax.plot(x_value_list[3], y_value_list[3],color='#c82423',label='BSACS-FL')
     ax.set(xlabel=x_label, ylabel=y_label)
-    ax.set_title('different TRound',loc=CENTER)
+    # ax.set_title('不同时间片在',loc=CENTER)
     ax.legend()
     fig.savefig(figure_file_name)
 
@@ -141,11 +141,10 @@ def main():
     """Plotting figures from the run-time results."""
 
 
-    result_csv_file1 =  './exp2_Performance_on_classic_dataset/MNIST/FedAsync_MNIST_noniid.csv'
-    result_csv_file2 =  './exp2_Performance_on_classic_dataset/MNIST/FedAvg_MNIST_noniid.csv'
-    result_csv_file3 =  './exp2_Performance_on_classic_dataset/MNIST/FedBuff_MNIST_noniid.csv'
-    result_csv_file4 =  './exp2_Performance_on_classic_dataset/MNIST/BSACS_MNIST_noniid.csv'
-
+    result_csv_file1 =  './exp3_performance_on_MNIST/noniid/FedAsync_MNIST_noniid.csv'
+    result_csv_file2 =  './exp3_performance_on_MNIST/noniid/FedAvg_MNIST_noniid.csv'
+    result_csv_file3 =  './exp3_performance_on_MNIST/noniid/FedBuff_MNIST_noniid.csv'
+    result_csv_file4 =  './exp3_performance_on_MNIST/noniid/BSACS_MNIST_noniid.csv'
 
     result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3,result_csv_file4]
     # result_csv_file_list=[result_csv_file1,result_csv_file2,result_csv_file3]

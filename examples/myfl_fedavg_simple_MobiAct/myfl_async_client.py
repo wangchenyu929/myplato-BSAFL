@@ -31,7 +31,7 @@ class Client(simple.Client):
         logging.info("[Client #%d] Loading its data source...", self.client_id)
 
         # 自定义数据集
-        self.trainset = MobiAct_noniid.MobiAct(train = True, client_id=self.client_id)
+        self.trainset = MobiAct_dataloader.MobiAct(train = True, client_id=self.client_id)
         self.data_loaded = True
 
         logging.info("[Client #%d] Trainset loaded", self.client_id)
@@ -40,7 +40,7 @@ class Client(simple.Client):
         if Config().clients.do_test:
             # Set the testset if local testing is needed
             # 自定义数据集
-            self.testset = MobiAct_noniid.MobiAct(train = False, client_id=55)
+            self.testset = MobiAct_dataloader.MobiAct(train = False, client_id=55)
             logging.info("[Client #%d] Testset loaded", self.client_id)
 
         self.data_loading_time = time.perf_counter() - data_loading_start_time

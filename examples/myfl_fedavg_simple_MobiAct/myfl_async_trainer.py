@@ -45,8 +45,8 @@ class Trainer(basic.Trainer):
                 log_interval = 10
                 batch_size = config['batch_size']
 
-                logging.info("[Client #%d] Loading the dataset.",
-                             self.client_id)
+                # logging.info("[Client #%d] Loading the dataset.",
+                #              self.client_id)
                 _train_loader = getattr(self, "train_loader", None)
 
                 if callable(_train_loader):
@@ -72,8 +72,8 @@ class Trainer(basic.Trainer):
 
                 iterations_per_epoch = np.ceil(len(trainset) /
                                                batch_size).astype(int)
-                logging.info("client @%d iterations_per_epoch: %d",self.client_id,iterations_per_epoch)
-                logging.info(trainset)
+                # logging.info("client @%d iterations_per_epoch: %d",self.client_id,iterations_per_epoch)
+                # logging.info(trainset)
                 epochs = config['epochs']
 
                 # Sending the model to the device used for training

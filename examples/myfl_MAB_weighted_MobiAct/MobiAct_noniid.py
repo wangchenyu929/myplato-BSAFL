@@ -38,6 +38,8 @@ class MobiAct(Dataset):
 		coll_class = np.zeros((144,1,30,30))
 		coll_label = np.zeros((144))
 		client_class_set = []
+
+		# distribute 1
 		# if client_id in [1,2,3,4,5,6,7,8,9,10]:
 		# 	client_class_set = [0,1,2,3]
 		# elif client_id in [11,12,13,14,15,16,17,18,19,20]:
@@ -48,6 +50,7 @@ class MobiAct(Dataset):
 		# 	client_class_set = [6,7,8,9]
 		# elif client_id in [41,42,43,44,45,46,47,48,49,50]:
 		# 	client_class_set = [0,1,8,9]
+		# distribute 2
 		if client_id in [1,6,11,16,21,26,31,41,9,46]:
 			client_class_set = [0,1,2,3]
 		elif client_id in [2,7,12,17,22,27,37,42,19,47]:

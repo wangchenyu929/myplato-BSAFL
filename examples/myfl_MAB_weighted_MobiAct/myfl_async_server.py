@@ -38,7 +38,7 @@ class Server(fedavg.Server):
         super().__init__(model=model, algorithm=algorithm, trainer=trainer)
         # server理论上的时间片值
 
-        self.TRound = 20
+        self.TRound = 40
 
         # 完成MBA所需的list
         self.MAB = []
@@ -510,16 +510,24 @@ class Server(fedavg.Server):
     async def select_model_by_probs_MAB(self):
         # 先不考虑处理staleness
         reward_probs = []
+        response_reward = []
         for i in range (len(self.MAB)):
             reward_probs.append(self.MAB[i]['reward'])
+        print("reward_probs:",reward_probs)
+        
+        for i,response_client in enumerate(self.response_complete):
+            response_reward.append(reward_probs[response_client-1])
+        
         # 归一化
-        reward_probs = np.array(reward_probs)
-        reward_probs /= sum(reward_probs)
-        print("probility:",reward_probs)
-
-        buffer_selected_client = np.random.choice(self.clients_pool,
+        response_reward = np.array(response_reward)
+        response_reward /= sum(response_reward)
+        print("probility:",response_reward)
+        if len(self.response_complete)<self.buffer_per_round:
+            buffer_selected_client = self.response_complete
+        else:    
+            buffer_selected_client = np.random.choice(self.response_complete,
                                    self.buffer_per_round,
-                                   p=reward_probs,
+                                   p=response_reward,
                                    replace=False).tolist()
         print("buffer_selected_client:",buffer_selected_client)
 
@@ -561,15 +569,12 @@ class Server(fedavg.Server):
                 # sorted_MAB[selected_client_num]['reward'] = math.sqrt(math.log(self.current_round)/sorted_MAB[selected_client_num]['selected_number'])
             
             # 计算exploitation
-            # training_staleness中无内容
-            if MAB_Dict['training_staleness'] == -1:
+            
+            if MAB_Dict['training_staleness'] == 0 or (self.current_round+1)%MAB_Dict['training_staleness'] == 0:
+                self.MAB[i]['reward'] = math.exp(MAB_Dict['training_staleness'])/e_ts + 5 + exploration
+            else:
                 self.MAB[i]['reward'] = exploration
             
-            elif MAB_Dict['training_staleness'] == 0 or (self.current_round+1)%MAB_Dict['training_staleness'] == 0:
-                self.MAB[i]['reward'] = math.exp(MAB_Dict['training_staleness'])/e_ts + 1 + exploration
-            
-
-
 
 
     # 当没有model上传时，向csv文件中写的内容

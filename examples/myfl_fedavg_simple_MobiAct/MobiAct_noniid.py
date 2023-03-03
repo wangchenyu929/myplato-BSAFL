@@ -7,13 +7,9 @@ from torch.utils.data import DataLoader
 
 class MobiAct(Dataset):
 
-	# class_set = ['STD','WAL','JOG','JUM','STU','STN','SCH','SIT','CSO','Fall']
-	# class_sample_num = [27,27,27,27,27,27,27,27,27,27]
-	# label = [0,1,2,3,4,5,6,7,8,9]
-	# NUM_OF_CLASS = 10
 
 	class_set = ['STD','WAL','JOG','JUM','STU','STN','SCH','CSO','CSI','Fall']
-	class_sample_num = [27,27,27,27,27,27,27,27,27,27]
+	class_sample_num = [36,36,36,36,36,36,36,36,36,36]
 	label = [0,1,2,3,4,5,6,7,8,9]
 	NUM_OF_CLASS = 10
 
@@ -21,7 +17,7 @@ class MobiAct(Dataset):
 	def __init__(self, train = True, client_id = None):
 
 		x_coll, y_coll = self.load_data(client_id)
-		x_train,x_test,y_train,y_test = self.generate_data(0.1, x_coll, y_coll)
+		x_train,x_test,y_train,y_test = self.generate_data(1, x_coll, y_coll)
 		if train:
 			self.x_data = x_train
 			self.y_data = y_train
@@ -39,21 +35,34 @@ class MobiAct(Dataset):
 
 	def load_data(self,client_id):
 		# 用来存放class和label
-		coll_class = np.zeros((108,1,30,30))
-		coll_label = np.zeros((108))
+		coll_class = np.zeros((144,1,30,30))
+		coll_label = np.zeros((144))
 		client_class_set = []
-		if client_id>=0 and client_id<10:
+
+		# distribute 1
+		# if client_id in [1,2,3,4,5,6,7,8,9,10]:
+		# 	client_class_set = [0,1,2,3]
+		# elif client_id in [11,12,13,14,15,16,17,18,19,20]:
+		# 	client_class_set = [2,3,4,5]
+		# elif client_id in [21,22,23,24,25,26,27,28,29,30]:
+		# 	client_class_set = [4,5,6,7]	
+		# elif client_id in [31,32,33,34,35,36,37,38,39,40]:
+		# 	client_class_set = [6,7,8,9]
+		# elif client_id in [41,42,43,44,45,46,47,48,49,50]:
+		# 	client_class_set = [0,1,8,9]
+		# distribute 2
+		if client_id in [1,6,11,16,21,26,31,41,9,46]:
 			client_class_set = [0,1,2,3]
-		elif client_id>=10 and client_id<20:
+		elif client_id in [2,7,12,17,22,27,37,42,19,47]:
 			client_class_set = [2,3,4,5]
-		elif client_id>=20 and client_id<30:
+		elif client_id in [3,8,13,18,23,28,38,43,29,48]:
 			client_class_set = [4,5,6,7]	
-		elif client_id>=30 and client_id<40:
+		elif client_id in [4,9,14,19,24,29,39,44,39,49]:
 			client_class_set = [6,7,8,9]
-		elif client_id>=40 and client_id<50:
+		elif client_id in [5,10,15,20,25,30,35,45,49,50]:
 			client_class_set = [0,1,8,9]
 		# client_class_set = [int((client_id-1)/10) *2,int((client_id-1)/10)*2+1]
-		print("client id:",client_id,client_class_set)
+		# print("client id:",client_id,client_class_set)
 		
 		sample_start = 0
 		for class_id in client_class_set:

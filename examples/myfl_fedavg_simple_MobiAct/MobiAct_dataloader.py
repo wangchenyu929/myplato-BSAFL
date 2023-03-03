@@ -13,7 +13,7 @@ class MobiAct(Dataset):
 	# NUM_OF_CLASS = 10
 
 	class_set = ['STD','WAL','JOG','JUM','STU','STN','SCH','CSO','CSI','Fall']
-	class_sample_num = [27,27,27,27,27,27,27,27,27,27]
+	class_sample_num = [36,36,36,36,36,36,36,36,36,36]
 	label = [0,1,2,3,4,5,6,7,8,9]
 	NUM_OF_CLASS = 10
 
@@ -21,10 +21,10 @@ class MobiAct(Dataset):
 	def __init__(self, train = True, client_id = None):
 
 		x_coll, y_coll = self.load_data(client_id)
-		if client_id == 55:
-			x_train,x_test,y_train,y_test = self.generate_data(1, x_coll, y_coll)
-		else:
-			x_train,x_test,y_train,y_test = self.generate_data(0.1, x_coll, y_coll)
+		# if client_id == 55:
+		# 	x_train,x_test,y_train,y_test = self.generate_data(1, x_coll, y_coll)
+		# else:
+		x_train,x_test,y_train,y_test = self.generate_data(1, x_coll, y_coll)
 		if train:
 			self.x_data = x_train
 			self.y_data = y_train
@@ -42,8 +42,11 @@ class MobiAct(Dataset):
 
 	def load_data(self,client_id):
 		# 用来存放class和label
-		coll_class = np.zeros((270,1,30,30))
-		coll_label = np.zeros((270))
+		# coll_class = np.zeros((270,1,30,30))
+		# coll_label = np.zeros((270))
+
+		coll_class = np.zeros((360,1,30,30))
+		coll_label = np.zeros((360))
 
 		for class_id in range(self.NUM_OF_CLASS):
 			# read_path = './data/Annotated_Data/'+ str(self.class_set[class_id])+'/' + str(self.class_set[class_id]) + '_' + str(client_id) + '_1_annotated.csv'
@@ -71,7 +74,7 @@ class MobiAct(Dataset):
 				# coll_class[first_index][1] = temp_original_Y
 				# # Z
 				# coll_class[first_index][2] = temp_original_Z
-
+				# sample_start = sample_start+self.class_sample_num[class_id]
 				coll_class[first_index][0] = temp_original
 				coll_label[first_index] = class_id
 			

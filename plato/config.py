@@ -128,7 +128,7 @@ class Config:
                     "/tmp/running_trainers.sqlitedb")
                 Config().cursor = Config.sql_connection.cursor()
 
-            # Customizable dictionary of global parameters
+            # Customizable dictionary of global parameterszzzzz
             Config.params: dict = {}
 
             # A run ID is unique to each client in an experiment

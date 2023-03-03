@@ -1,0 +1,798 @@
+03/02/2023 21:34:59:INFO:[Server #34387] Started training on 50 clients with 10 per round.
+03/02/2023 21:35:00:INFO:[Server #34387] Configuring the server...
+03/02/2023 21:35:00:INFO:Training: 200 rounds or 100.0% accuracy
+
+03/02/2023 21:35:00:INFO:Data source: MNIST
+03/02/2023 21:35:00:INFO:Starting client #1's process.
+03/02/2023 21:35:00:INFO:Starting client #2's process.
+03/02/2023 21:35:00:INFO:Starting client #3's process.
+03/02/2023 21:35:00:INFO:Starting client #4's process.
+03/02/2023 21:35:00:INFO:Starting client #5's process.
+03/02/2023 21:35:00:INFO:Starting client #6's process.
+03/02/2023 21:35:00:INFO:Starting client #7's process.
+03/02/2023 21:35:00:INFO:Starting client #8's process.
+03/02/2023 21:35:00:INFO:Starting client #9's process.
+03/02/2023 21:35:00:INFO:Starting client #10's process.
+03/02/2023 21:35:00:INFO:Starting client #11's process.
+03/02/2023 21:35:00:INFO:Starting client #12's process.
+03/02/2023 21:35:00:INFO:Starting client #13's process.
+03/02/2023 21:35:00:INFO:Starting client #14's process.
+03/02/2023 21:35:00:INFO:Starting client #15's process.
+03/02/2023 21:35:00:INFO:Starting client #16's process.
+03/02/2023 21:35:00:INFO:Starting client #17's process.
+03/02/2023 21:35:00:INFO:Starting client #18's process.
+03/02/2023 21:35:00:INFO:Starting client #19's process.
+03/02/2023 21:35:00:INFO:Starting client #20's process.
+03/02/2023 21:35:00:INFO:Starting client #21's process.
+03/02/2023 21:35:00:INFO:Starting client #22's process.
+03/02/2023 21:35:00:INFO:Starting client #23's process.
+03/02/2023 21:35:00:INFO:Starting client #24's process.
+03/02/2023 21:35:01:INFO:Starting client #25's process.
+03/02/2023 21:35:01:INFO:Starting client #26's process.
+03/02/2023 21:35:01:INFO:Starting client #27's process.
+03/02/2023 21:35:01:INFO:Starting client #28's process.
+03/02/2023 21:35:01:INFO:Starting client #29's process.
+03/02/2023 21:35:01:INFO:Starting client #30's process.
+03/02/2023 21:35:01:INFO:Starting client #31's process.
+03/02/2023 21:35:01:INFO:Starting client #32's process.
+03/02/2023 21:35:01:INFO:Starting client #33's process.
+03/02/2023 21:35:01:INFO:Starting client #34's process.
+03/02/2023 21:35:01:INFO:Starting client #35's process.
+03/02/2023 21:35:01:INFO:Starting client #36's process.
+03/02/2023 21:35:01:INFO:Starting client #37's process.
+03/02/2023 21:35:01:INFO:Starting client #38's process.
+03/02/2023 21:35:01:INFO:Starting client #39's process.
+03/02/2023 21:35:01:INFO:Starting client #40's process.
+03/02/2023 21:35:02:INFO:Starting client #41's process.
+03/02/2023 21:35:02:INFO:Starting client #42's process.
+03/02/2023 21:35:02:INFO:Starting client #43's process.
+03/02/2023 21:35:02:INFO:Starting client #44's process.
+03/02/2023 21:35:02:INFO:Starting client #45's process.
+03/02/2023 21:35:02:INFO:Starting client #46's process.
+03/02/2023 21:35:02:INFO:Starting client #47's process.
+03/02/2023 21:35:02:INFO:Starting client #48's process.
+03/02/2023 21:35:02:INFO:Starting client #49's process.
+03/02/2023 21:35:02:INFO:Starting client #50's process.
+03/02/2023 21:35:02:INFO:Starting a server at address 127.0.0.1 and port 8000.
+03/02/2023 21:35:02:INFO:plato->servers base.py class.server periodic_task()
+======== Running on http://127.0.0.1:8000 ========
+(Press CTRL+C to quit)
+03/02/2023 21:35:18:INFO:[Client #13] Contacting the central server.
+03/02/2023 21:35:18:INFO:[Client #13] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:18:INFO:127.0.0.1 [02/Mar/2023:13:35:18 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764118.5877182 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:18:INFO:[Client #13] Waiting to be selected.
+03/02/2023 21:35:18:INFO:[Client #5] Contacting the central server.
+03/02/2023 21:35:18:INFO:[Client #5] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:18:INFO:[Client #8] Contacting the central server.
+03/02/2023 21:35:18:INFO:127.0.0.1 [02/Mar/2023:13:35:18 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764118.6222153 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:18:INFO:[Client #8] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:18:INFO:127.0.0.1 [02/Mar/2023:13:35:18 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764118.6279147 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:18:INFO:[Client #5] Waiting to be selected.
+03/02/2023 21:35:18:INFO:[Client #8] Waiting to be selected.
+03/02/2023 21:35:18:INFO:[Client #3] Contacting the central server.
+03/02/2023 21:35:18:INFO:[Client #3] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:18:INFO:127.0.0.1 [02/Mar/2023:13:35:18 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764118.7776577 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:18:INFO:[Client #3] Waiting to be selected.
+03/02/2023 21:35:18:INFO:[Client #24] Contacting the central server.
+03/02/2023 21:35:18:INFO:[Client #24] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:18:INFO:127.0.0.1 [02/Mar/2023:13:35:18 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764118.9570162 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:18:INFO:[Client #24] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #2] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #2] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.019865 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #2] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #22] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #22] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.1244025 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #22] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #7] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #7] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.1932847 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #7] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #10] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #10] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.4035835 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #10] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #16] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #16] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:[Client #20] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #20] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.4681141 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.4696066 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #16] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Server #34387] Starting training.
+03/02/2023 21:35:19:INFO:[Client #20] Waiting to be selected.
+03/02/2023 21:35:19:INFO:
+[Server #34387] Starting round 1/200.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #3 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #3.
+03/02/2023 21:35:19:INFO:[Client #1] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #3] Loading its data source...
+03/02/2023 21:35:19:INFO:[Client #1] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #18] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #18] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.4911711 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.4967747 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #1] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #18] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #3] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #3] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Client #33] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #33] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.5623267 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #33] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #3.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #22 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #22.
+03/02/2023 21:35:19:INFO:[Client #22] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #9] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #9] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.6017098 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #9] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #22.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #13 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #13.
+03/02/2023 21:35:19:INFO:[Client #22] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #13] Loading its data source...
+03/02/2023 21:35:19:INFO:[Client #22] Sampler: noniid
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #4] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #4] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.6663432 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #4] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #3] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #3] Started training.
+03/02/2023 21:35:19:INFO:[Client #13] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #13] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #13.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #10 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #10.
+03/02/2023 21:35:19:INFO:[Client #10] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #22] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #22] Started training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #10.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #8 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #8.
+03/02/2023 21:35:19:INFO:[Client #8] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #23] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #23] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.776792 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #13] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #10] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #10] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Client #13] Started training.
+03/02/2023 21:35:19:INFO:[Client #23] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #8] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #8] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #8.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #2 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #2.
+03/02/2023 21:35:19:INFO:[Client #2] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #10] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #10] Started training.
+03/02/2023 21:35:19:INFO:[Client #2] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #2] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #2.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #24 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #24.
+03/02/2023 21:35:19:INFO:[Client #24] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #38] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #38] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.9275372 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #8] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #8] Started training.
+03/02/2023 21:35:19:INFO:[Client #38] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #35] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #35] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:[Client #2] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:19:INFO:[Client #2] Started training.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.9575593 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #35] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #24] Dataset size: 60000
+03/02/2023 21:35:19:INFO:[Client #24] Sampler: noniid
+03/02/2023 21:35:19:INFO:[Client #25] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #25] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:[Client #12] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #12] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:[Client #11] Contacting the central server.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.9706633 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #11] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.974472 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.9736834 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Client #25] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #15] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #15] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:19:INFO:[Client #11] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #12] Waiting to be selected.
+03/02/2023 21:35:19:INFO:127.0.0.1 [02/Mar/2023:13:35:19 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.9866588 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:19:INFO:[Server #34387] Sent 0.24 MB of payload data to client #24.
+03/02/2023 21:35:19:INFO:[Server #34387] Selecting client #16 for training.
+03/02/2023 21:35:19:INFO:[Server #34387] Sending the current model to client #16.
+03/02/2023 21:35:19:INFO:[Client #16] Loading its data source...
+03/02/2023 21:35:19:INFO:Data source: MNIST
+03/02/2023 21:35:19:INFO:[Client #15] Waiting to be selected.
+03/02/2023 21:35:19:INFO:[Client #31] Contacting the central server.
+03/02/2023 21:35:19:INFO:[Client #31] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764119.999499 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #31] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #37] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #37] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.012808 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #29] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #26] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #29] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #37] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #26] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.0207992 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.0217109 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #29] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #26] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #16] Dataset size: 60000
+03/02/2023 21:35:20:INFO:[Client #16] Sampler: noniid
+03/02/2023 21:35:20:INFO:[Client #40] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #40] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #42] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #42] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.041644 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.0437944 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #24] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:20:INFO:[Client #24] Started training.
+03/02/2023 21:35:20:INFO:[Client #40] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #42] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #47] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #47] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.0635297 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #47] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Server #34387] Sent 0.24 MB of payload data to client #16.
+03/02/2023 21:35:20:INFO:[Server #34387] Selecting client #5 for training.
+03/02/2023 21:35:20:INFO:[Server #34387] Sending the current model to client #5.
+03/02/2023 21:35:20:INFO:[Client #5] Loading its data source...
+03/02/2023 21:35:20:INFO:Data source: MNIST
+03/02/2023 21:35:20:INFO:[Client #16] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:20:INFO:[Client #16] Started training.
+03/02/2023 21:35:20:INFO:[Client #45] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #45] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #30] Contacting the central server.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.1163466 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #30] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.120305 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #45] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #30] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #28] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #28] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #5] Dataset size: 60000
+03/02/2023 21:35:20:INFO:[Client #5] Sampler: noniid
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.1432729 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Server #34387] Sent 0.24 MB of payload data to client #5.
+03/02/2023 21:35:20:INFO:[Server #34387] Selecting client #7 for training.
+03/02/2023 21:35:20:INFO:[Client #28] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Server #34387] Sending the current model to client #7.
+03/02/2023 21:35:20:INFO:[Client #7] Loading its data source...
+03/02/2023 21:35:20:INFO:Data source: MNIST
+03/02/2023 21:35:20:INFO:[Client #32] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #32] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.175421 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #32] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #14] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #14] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.1837685 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #14] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #7] Dataset size: 60000
+03/02/2023 21:35:20:INFO:[Client #7] Sampler: noniid
+03/02/2023 21:35:20:INFO:[Server #34387] Sent 0.24 MB of payload data to client #7.
+03/02/2023 21:35:20:INFO:[Client #5] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:20:INFO:[Client #5] Started training.
+03/02/2023 21:35:20:INFO:[Client #6] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #6] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.231867 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #6] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #49] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #49] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2441354 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #49] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #34] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #34] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2579947 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #34] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #36] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #36] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2730541 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #7] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:20:INFO:[Client #7] Started training.
+03/02/2023 21:35:20:INFO:[Client #46] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #46] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #36] Waiting to be selected.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2783785 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #50] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #50] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #46] Waiting to be selected.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2833586 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #17] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #50] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #17] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #43] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #43] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2898288 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.2923613 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #17] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #43] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #39] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #39] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.3003936 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #39] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #21] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #21] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.3303745 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #21] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #19] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #19] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.3403141 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #27] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #27] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:[Client #19] Waiting to be selected.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.345198 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #27] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #48] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #48] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.3713477 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #48] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #41] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #41] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.4053779 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #41] Waiting to be selected.
+03/02/2023 21:35:20:INFO:[Client #44] Contacting the central server.
+03/02/2023 21:35:20:INFO:[Client #44] Connecting to the server at http://127.0.0.1:8000.
+03/02/2023 21:35:20:INFO:127.0.0.1 [02/Mar/2023:13:35:20 +0000] "GET /socket.io/?transport=polling&EIO=4&t=1677764120.4309356 HTTP/1.1" 200 292 "-" "Python/3.8 aiohttp/3.8.1"
+03/02/2023 21:35:20:INFO:[Client #44] Waiting to be selected.
+03/02/2023 21:35:22:INFO:plato->servers base.py class.server periodic_task()
+03/02/2023 21:35:27:INFO:[Client #10] Epoch: [1/1][0/12]	Loss: 2.241080
+03/02/2023 21:35:27:INFO:[Client #22] Epoch: [1/1][0/12]	Loss: 2.297504
+03/02/2023 21:35:27:INFO:[Client #10] Epoch: [1/1][10/12]	Loss: 2.032008
+03/02/2023 21:35:28:INFO:[Client #22] Epoch: [1/1][10/12]	Loss: 1.968406
+03/02/2023 21:35:28:INFO:[Client #2] Epoch: [1/1][0/12]	Loss: 2.246811
+03/02/2023 21:35:28:INFO:[Client #13] Epoch: [1/1][0/12]	Loss: 2.359840
+03/02/2023 21:35:28:INFO:[Client #3] Epoch: [1/1][0/12]	Loss: 2.325038
+03/02/2023 21:35:28:INFO:[Client #2] Epoch: [1/1][10/12]	Loss: 2.028972
+03/02/2023 21:35:28:INFO:[Client #13] Epoch: [1/1][10/12]	Loss: 2.017110
+03/02/2023 21:35:28:INFO:[Client #3] Epoch: [1/1][10/12]	Loss: 1.495838
+03/02/2023 21:35:29:INFO:[Client #10] Model trained.
+03/02/2023 21:35:29:INFO:[Client #10] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:29:INFO:[Client #2] Model trained.
+03/02/2023 21:35:29:INFO:[Client #2] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:29:INFO:[Server #34387] Received 0.24 MB of payload data from client #10.
+03/02/2023 21:35:29:INFO:[Server #34387] Received 0.24 MB of payload data from client #2.
+03/02/2023 21:35:29:INFO:[Client #22] Model trained.
+03/02/2023 21:35:29:INFO:[Client #22] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:29:INFO:[Client #13] Model trained.
+03/02/2023 21:35:29:INFO:[Client #13] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:29:INFO:[Server #34387] Received 0.24 MB of payload data from client #22.
+03/02/2023 21:35:29:INFO:[Server #34387] Received 0.24 MB of payload data from client #13.
+03/02/2023 21:35:29:INFO:[Client #3] Model trained.
+03/02/2023 21:35:29:INFO:[Client #3] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:29:INFO:[Server #34387] Received 0.24 MB of payload data from client #3.
+03/02/2023 21:35:36:INFO:[Client #24] Epoch: [1/1][0/12]	Loss: 3.077812
+03/02/2023 21:35:36:INFO:[Client #24] Epoch: [1/1][10/12]	Loss: 1.786505
+03/02/2023 21:35:36:INFO:[Client #8] Epoch: [1/1][0/12]	Loss: 2.937204
+03/02/2023 21:35:36:INFO:[Client #5] Epoch: [1/1][0/12]	Loss: 3.118562
+03/02/2023 21:35:36:INFO:[Client #5] Epoch: [1/1][10/12]	Loss: 2.018749
+03/02/2023 21:35:36:INFO:[Client #8] Epoch: [1/1][10/12]	Loss: 2.061584
+03/02/2023 21:35:36:INFO:[Client #7] Epoch: [1/1][0/12]	Loss: 3.475892
+03/02/2023 21:35:36:INFO:[Client #7] Epoch: [1/1][10/12]	Loss: 2.007445
+03/02/2023 21:35:37:INFO:[Client #16] Epoch: [1/1][0/12]	Loss: 3.349290
+03/02/2023 21:35:37:INFO:[Client #16] Epoch: [1/1][10/12]	Loss: 2.154722
+03/02/2023 21:35:38:INFO:[Client #24] Model trained.
+03/02/2023 21:35:38:INFO:[Client #24] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:38:INFO:[Client #5] Model trained.
+03/02/2023 21:35:38:INFO:[Server #34387] Received 0.24 MB of payload data from client #24.
+03/02/2023 21:35:38:INFO:[Client #5] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:38:INFO:[Server #34387] Received 0.24 MB of payload data from client #5.
+03/02/2023 21:35:38:INFO:[Client #8] Model trained.
+03/02/2023 21:35:38:INFO:[Client #8] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:38:INFO:[Client #16] Model trained.
+03/02/2023 21:35:38:INFO:[Server #34387] Received 0.24 MB of payload data from client #8.
+03/02/2023 21:35:38:INFO:[Client #16] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:38:INFO:[Server #34387] Received 0.24 MB of payload data from client #16.
+03/02/2023 21:35:38:INFO:[Client #7] Model trained.
+03/02/2023 21:35:38:INFO:[Client #7] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:38:INFO:[Server #34387] Received 0.24 MB of payload data from client #7.
+03/02/2023 21:35:38:INFO:[Server #34387] All 10 client reports received. Processing.
+03/02/2023 21:35:42:INFO:plato->servers base.py class.server periodic_task()
+03/02/2023 21:35:43:INFO:[Server #34387] Global model accuracy: 10.32%
+
+selected clients: [3, 22, 13, 10, 8, 2, 24, 16, 5, 7]
+03/02/2023 21:35:43:INFO:
+[Server #34387] Starting round 2/200.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #45 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #45.
+03/02/2023 21:35:43:INFO:[Client #45] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #45.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #3 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #3.
+03/02/2023 21:35:43:INFO:[Client #45] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #45] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #3.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #35 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #35.
+03/02/2023 21:35:43:INFO:[Client #35] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #35] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #35] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Client #45] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #45] Started training.
+03/02/2023 21:35:43:INFO:[Client #3] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #3] Started training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #35.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #37 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #37.
+03/02/2023 21:35:43:INFO:[Client #37] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #35] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #35] Started training.
+03/02/2023 21:35:43:INFO:[Client #37] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #37] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #37.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #10 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #10.
+03/02/2023 21:35:43:INFO:[Client #37] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #37] Started training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #10.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #13 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #13.
+03/02/2023 21:35:43:INFO:[Client #10] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #10] Started training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #13.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #39 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #39.
+03/02/2023 21:35:43:INFO:[Client #39] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #13] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #13] Started training.
+03/02/2023 21:35:43:INFO:[Client #39] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #39] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #39.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #19 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #19.
+03/02/2023 21:35:43:INFO:[Client #19] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #19] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #19] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Client #39] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #19.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #21 for training.
+03/02/2023 21:35:43:INFO:[Client #39] Started training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #21.
+03/02/2023 21:35:43:INFO:[Client #21] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #21] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #21] Sampler: noniid
+03/02/2023 21:35:43:INFO:[Server #34387] Sent 0.24 MB of payload data to client #21.
+03/02/2023 21:35:43:INFO:[Server #34387] Selecting client #40 for training.
+03/02/2023 21:35:43:INFO:[Server #34387] Sending the current model to client #40.
+03/02/2023 21:35:43:INFO:[Client #40] Loading its data source...
+03/02/2023 21:35:43:INFO:Data source: MNIST
+03/02/2023 21:35:43:INFO:[Client #19] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:43:INFO:[Client #19] Started training.
+03/02/2023 21:35:43:INFO:[Client #40] Dataset size: 60000
+03/02/2023 21:35:43:INFO:[Client #40] Sampler: noniid
+03/02/2023 21:35:44:INFO:[Server #34387] Sent 0.24 MB of payload data to client #40.
+03/02/2023 21:35:44:INFO:[Client #21] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:44:INFO:[Client #21] Started training.
+03/02/2023 21:35:44:INFO:[Client #40] Received 0.24 MB of payload data from the server.
+03/02/2023 21:35:44:INFO:[Client #40] Started training.
+03/02/2023 21:35:51:INFO:[Client #45] Epoch: [1/1][0/12]	Loss: 2.335400
+03/02/2023 21:35:51:INFO:[Client #45] Epoch: [1/1][10/12]	Loss: 1.487781
+03/02/2023 21:35:51:INFO:[Client #39] Epoch: [1/1][0/12]	Loss: 2.405389
+03/02/2023 21:35:51:INFO:[Client #39] Epoch: [1/1][10/12]	Loss: 2.237926
+03/02/2023 21:35:51:INFO:[Client #3] Epoch: [1/1][0/12]	Loss: 2.047081
+03/02/2023 21:35:51:INFO:[Client #3] Epoch: [1/1][10/12]	Loss: 0.932716
+03/02/2023 21:35:52:INFO:[Client #21] Epoch: [1/1][0/12]	Loss: 2.352740
+03/02/2023 21:35:52:INFO:[Client #21] Epoch: [1/1][10/12]	Loss: 2.014144
+03/02/2023 21:35:52:INFO:[Client #19] Epoch: [1/1][0/12]	Loss: 4.813116
+03/02/2023 21:35:52:INFO:[Client #19] Epoch: [1/1][10/12]	Loss: 2.243049
+03/02/2023 21:35:52:INFO:[Client #45] Model trained.
+03/02/2023 21:35:52:INFO:[Client #45] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:52:INFO:[Client #39] Model trained.
+03/02/2023 21:35:52:INFO:[Client #39] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:52:INFO:[Server #34387] Received 0.24 MB of payload data from client #45.
+03/02/2023 21:35:52:INFO:[Client #3] Model trained.
+03/02/2023 21:35:52:INFO:[Client #3] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:52:INFO:[Server #34387] Received 0.24 MB of payload data from client #39.
+03/02/2023 21:35:52:INFO:[Server #34387] Received 0.24 MB of payload data from client #3.
+03/02/2023 21:35:53:INFO:[Client #21] Model trained.
+03/02/2023 21:35:53:INFO:[Client #21] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:53:INFO:[Server #34387] Received 0.24 MB of payload data from client #21.
+03/02/2023 21:35:53:INFO:[Client #19] Model trained.
+03/02/2023 21:35:53:INFO:[Client #19] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:35:53:INFO:[Server #34387] Received 0.24 MB of payload data from client #19.
+03/02/2023 21:36:00:INFO:[Client #35] Epoch: [1/1][0/12]	Loss: 2.288955
+03/02/2023 21:36:00:INFO:[Client #37] Epoch: [1/1][0/12]	Loss: 2.410097
+03/02/2023 21:36:00:INFO:[Client #35] Epoch: [1/1][10/12]	Loss: 2.197557
+03/02/2023 21:36:00:INFO:[Client #37] Epoch: [1/1][10/12]	Loss: 2.292958
+03/02/2023 21:36:00:INFO:[Client #10] Epoch: [1/1][0/12]	Loss: 2.325632
+03/02/2023 21:36:00:INFO:[Client #10] Epoch: [1/1][10/12]	Loss: 2.229691
+03/02/2023 21:36:00:INFO:[Client #13] Epoch: [1/1][0/12]	Loss: 2.399470
+03/02/2023 21:36:00:INFO:[Client #40] Epoch: [1/1][0/12]	Loss: 2.333163
+03/02/2023 21:36:00:INFO:[Client #13] Epoch: [1/1][10/12]	Loss: 2.247121
+03/02/2023 21:36:00:INFO:[Client #40] Epoch: [1/1][10/12]	Loss: 2.278033
+03/02/2023 21:36:01:INFO:[Client #35] Model trained.
+03/02/2023 21:36:01:INFO:[Client #35] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:01:INFO:[Client #37] Model trained.
+03/02/2023 21:36:01:INFO:[Client #37] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:01:INFO:[Client #10] Model trained.
+03/02/2023 21:36:01:INFO:[Server #34387] Received 0.24 MB of payload data from client #35.
+03/02/2023 21:36:01:INFO:[Client #10] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:01:INFO:[Client #13] Model trained.
+03/02/2023 21:36:01:INFO:[Client #13] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:01:INFO:[Server #34387] Received 0.24 MB of payload data from client #37.
+03/02/2023 21:36:01:INFO:[Client #40] Model trained.
+03/02/2023 21:36:01:INFO:[Client #40] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:01:INFO:[Server #34387] Received 0.24 MB of payload data from client #10.
+03/02/2023 21:36:01:INFO:[Server #34387] Received 0.24 MB of payload data from client #13.
+03/02/2023 21:36:01:INFO:[Server #34387] Received 0.24 MB of payload data from client #40.
+03/02/2023 21:36:01:INFO:[Server #34387] All 10 client reports received. Processing.
+03/02/2023 21:36:02:INFO:plato->servers base.py class.server periodic_task()
+03/02/2023 21:36:03:INFO:[Server #34387] Global model accuracy: 10.32%
+
+selected clients: [45, 3, 35, 37, 10, 13, 39, 19, 21, 40]
+03/02/2023 21:36:03:INFO:
+[Server #34387] Starting round 3/200.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #26 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #26.
+03/02/2023 21:36:03:INFO:[Client #26] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #26.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #19 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #19.
+03/02/2023 21:36:03:INFO:[Client #26] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #26] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #19.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #35 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #35.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #35.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #20 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #20.
+03/02/2023 21:36:03:INFO:[Client #20] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Client #19] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #19] Started training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #20.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #28 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #28.
+03/02/2023 21:36:03:INFO:[Client #28] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Client #20] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #20] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Client #26] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #26] Started training.
+03/02/2023 21:36:03:INFO:[Client #35] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #35] Started training.
+03/02/2023 21:36:03:INFO:[Client #28] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #28] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #28.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #38 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #38.
+03/02/2023 21:36:03:INFO:[Client #38] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #38.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #47 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #47.
+03/02/2023 21:36:03:INFO:[Client #47] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Client #38] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #38] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Client #20] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #20] Started training.
+03/02/2023 21:36:03:INFO:[Client #28] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #28] Started training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #47.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #25 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #25.
+03/02/2023 21:36:03:INFO:[Client #25] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Client #47] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #47] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Client #25] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #25] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Client #38] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #25.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #24 for training.
+03/02/2023 21:36:03:INFO:[Client #38] Started training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #24.
+03/02/2023 21:36:03:INFO:[Client #47] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #47] Started training.
+03/02/2023 21:36:03:INFO:[Client #25] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #25] Started training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #24.
+03/02/2023 21:36:03:INFO:[Server #34387] Selecting client #41 for training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sending the current model to client #41.
+03/02/2023 21:36:03:INFO:[Client #41] Loading its data source...
+03/02/2023 21:36:03:INFO:Data source: MNIST
+03/02/2023 21:36:03:INFO:[Client #41] Dataset size: 60000
+03/02/2023 21:36:03:INFO:[Client #41] Sampler: noniid
+03/02/2023 21:36:03:INFO:[Client #24] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #24] Started training.
+03/02/2023 21:36:03:INFO:[Server #34387] Sent 0.24 MB of payload data to client #41.
+03/02/2023 21:36:03:INFO:[Client #41] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:03:INFO:[Client #41] Started training.
+03/02/2023 21:36:11:INFO:[Client #47] Epoch: [1/1][0/12]	Loss: 2.372082
+03/02/2023 21:36:11:INFO:[Client #47] Epoch: [1/1][10/12]	Loss: 2.254470
+03/02/2023 21:36:11:INFO:[Client #19] Epoch: [1/1][0/12]	Loss: 2.302732
+03/02/2023 21:36:12:INFO:[Client #20] Epoch: [1/1][0/12]	Loss: 2.367830
+03/02/2023 21:36:12:INFO:[Client #19] Epoch: [1/1][10/12]	Loss: 2.141422
+03/02/2023 21:36:12:INFO:[Client #20] Epoch: [1/1][10/12]	Loss: 2.269944
+03/02/2023 21:36:12:INFO:[Client #24] Epoch: [1/1][0/12]	Loss: 2.440110
+03/02/2023 21:36:12:INFO:[Client #24] Epoch: [1/1][10/12]	Loss: 2.247878
+03/02/2023 21:36:12:INFO:[Client #38] Epoch: [1/1][0/12]	Loss: 2.470263
+03/02/2023 21:36:12:INFO:[Client #47] Model trained.
+03/02/2023 21:36:12:INFO:[Client #47] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:13:INFO:[Client #20] Model trained.
+03/02/2023 21:36:13:INFO:[Client #20] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:13:INFO:[Client #19] Model trained.
+03/02/2023 21:36:13:INFO:[Client #19] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:13:INFO:[Client #38] Epoch: [1/1][10/12]	Loss: 2.102013
+03/02/2023 21:36:13:INFO:[Server #34387] Received 0.24 MB of payload data from client #47.
+03/02/2023 21:36:13:INFO:[Server #34387] Received 0.24 MB of payload data from client #20.
+03/02/2023 21:36:13:INFO:[Server #34387] Received 0.24 MB of payload data from client #19.
+03/02/2023 21:36:13:INFO:[Client #24] Model trained.
+03/02/2023 21:36:13:INFO:[Client #24] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:13:INFO:[Server #34387] Received 0.24 MB of payload data from client #24.
+03/02/2023 21:36:13:INFO:[Client #38] Model trained.
+03/02/2023 21:36:13:INFO:[Client #38] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:14:INFO:[Server #34387] Received 0.24 MB of payload data from client #38.
+03/02/2023 21:36:20:INFO:[Client #25] Epoch: [1/1][0/12]	Loss: 2.464011
+03/02/2023 21:36:20:INFO:[Client #28] Epoch: [1/1][0/12]	Loss: 2.402323
+03/02/2023 21:36:20:INFO:[Client #25] Epoch: [1/1][10/12]	Loss: 2.219573
+03/02/2023 21:36:20:INFO:[Client #28] Epoch: [1/1][10/12]	Loss: 2.249829
+03/02/2023 21:36:20:INFO:[Client #35] Epoch: [1/1][0/12]	Loss: 2.325122
+03/02/2023 21:36:21:INFO:[Client #35] Epoch: [1/1][10/12]	Loss: 2.225786
+03/02/2023 21:36:21:INFO:[Client #26] Epoch: [1/1][0/12]	Loss: 2.295232
+03/02/2023 21:36:21:INFO:[Client #41] Epoch: [1/1][0/12]	Loss: 2.181714
+03/02/2023 21:36:21:INFO:[Client #26] Epoch: [1/1][10/12]	Loss: 2.102169
+03/02/2023 21:36:21:INFO:[Client #41] Epoch: [1/1][10/12]	Loss: 2.151757
+03/02/2023 21:36:21:INFO:[Client #25] Model trained.
+03/02/2023 21:36:21:INFO:[Client #25] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:21:INFO:[Client #28] Model trained.
+03/02/2023 21:36:21:INFO:[Client #28] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:21:INFO:[Server #34387] Received 0.24 MB of payload data from client #25.
+03/02/2023 21:36:21:INFO:[Server #34387] Received 0.24 MB of payload data from client #28.
+03/02/2023 21:36:21:INFO:[Client #35] Model trained.
+03/02/2023 21:36:21:INFO:[Client #35] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:21:INFO:[Server #34387] Received 0.24 MB of payload data from client #35.
+03/02/2023 21:36:22:INFO:[Client #26] Model trained.
+03/02/2023 21:36:22:INFO:[Client #26] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:22:INFO:[Client #41] Model trained.
+03/02/2023 21:36:22:INFO:[Client #41] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:22:INFO:[Server #34387] Received 0.24 MB of payload data from client #26.
+03/02/2023 21:36:22:INFO:[Server #34387] Received 0.24 MB of payload data from client #41.
+03/02/2023 21:36:22:INFO:[Server #34387] All 10 client reports received. Processing.
+03/02/2023 21:36:22:INFO:plato->servers base.py class.server periodic_task()
+03/02/2023 21:36:23:INFO:[Server #34387] Global model accuracy: 11.53%
+
+selected clients: [26, 19, 35, 20, 28, 38, 47, 25, 24, 41]
+03/02/2023 21:36:23:INFO:
+[Server #34387] Starting round 4/200.
+03/02/2023 21:36:23:INFO:[Server #34387] Selecting client #4 for training.
+03/02/2023 21:36:23:INFO:[Server #34387] Sending the current model to client #4.
+03/02/2023 21:36:23:INFO:[Client #4] Loading its data source...
+03/02/2023 21:36:23:INFO:Data source: MNIST
+03/02/2023 21:36:23:INFO:[Server #34387] Sent 0.24 MB of payload data to client #4.
+03/02/2023 21:36:23:INFO:[Server #34387] Selecting client #39 for training.
+03/02/2023 21:36:23:INFO:[Server #34387] Sending the current model to client #39.
+03/02/2023 21:36:23:INFO:[Client #4] Dataset size: 60000
+03/02/2023 21:36:23:INFO:[Client #4] Sampler: noniid
+03/02/2023 21:36:23:INFO:[Server #34387] Sent 0.24 MB of payload data to client #39.
+03/02/2023 21:36:23:INFO:[Server #34387] Selecting client #14 for training.
+03/02/2023 21:36:23:INFO:[Server #34387] Sending the current model to client #14.
+03/02/2023 21:36:23:INFO:[Client #14] Loading its data source...
+03/02/2023 21:36:23:INFO:Data source: MNIST
+03/02/2023 21:36:23:INFO:[Server #34387] Sent 0.24 MB of payload data to client #14.
+03/02/2023 21:36:23:INFO:[Server #34387] Selecting client #36 for training.
+03/02/2023 21:36:23:INFO:[Server #34387] Sending the current model to client #36.
+03/02/2023 21:36:23:INFO:[Client #36] Loading its data source...
+03/02/2023 21:36:23:INFO:Data source: MNIST
+03/02/2023 21:36:23:INFO:[Client #14] Dataset size: 60000
+03/02/2023 21:36:23:INFO:[Client #14] Sampler: noniid
+03/02/2023 21:36:23:INFO:[Client #4] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:23:INFO:[Client #4] Started training.
+03/02/2023 21:36:23:INFO:[Client #39] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:23:INFO:[Client #39] Started training.
+03/02/2023 21:36:24:INFO:[Client #36] Dataset size: 60000
+03/02/2023 21:36:24:INFO:[Client #36] Sampler: noniid
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #36.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #44 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #44.
+03/02/2023 21:36:24:INFO:[Client #44] Loading its data source...
+03/02/2023 21:36:24:INFO:Data source: MNIST
+03/02/2023 21:36:24:INFO:[Client #14] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #14] Started training.
+03/02/2023 21:36:24:INFO:[Client #44] Dataset size: 60000
+03/02/2023 21:36:24:INFO:[Client #44] Sampler: noniid
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #44.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #26 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #26.
+03/02/2023 21:36:24:INFO:[Client #36] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #44] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #36] Started training.
+03/02/2023 21:36:24:INFO:[Client #44] Started training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #26.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #31 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #31.
+03/02/2023 21:36:24:INFO:[Client #31] Loading its data source...
+03/02/2023 21:36:24:INFO:Data source: MNIST
+03/02/2023 21:36:24:INFO:[Client #26] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #26] Started training.
+03/02/2023 21:36:24:INFO:[Client #31] Dataset size: 60000
+03/02/2023 21:36:24:INFO:[Client #31] Sampler: noniid
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #31.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #13 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #13.
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #13.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #30 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #30.
+03/02/2023 21:36:24:INFO:[Client #30] Loading its data source...
+03/02/2023 21:36:24:INFO:[Client #31] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:Data source: MNIST
+03/02/2023 21:36:24:INFO:[Client #31] Started training.
+03/02/2023 21:36:24:INFO:[Client #13] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #13] Started training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #30.
+03/02/2023 21:36:24:INFO:[Server #34387] Selecting client #2 for training.
+03/02/2023 21:36:24:INFO:[Server #34387] Sending the current model to client #2.
+03/02/2023 21:36:24:INFO:[Client #30] Dataset size: 60000
+03/02/2023 21:36:24:INFO:[Client #30] Sampler: noniid
+03/02/2023 21:36:24:INFO:[Server #34387] Sent 0.24 MB of payload data to client #2.
+03/02/2023 21:36:24:INFO:[Client #2] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #2] Started training.
+03/02/2023 21:36:24:INFO:[Client #30] Received 0.24 MB of payload data from the server.
+03/02/2023 21:36:24:INFO:[Client #30] Started training.
+03/02/2023 21:36:31:INFO:[Client #36] Epoch: [1/1][0/12]	Loss: 2.194963
+03/02/2023 21:36:32:INFO:[Client #36] Epoch: [1/1][10/12]	Loss: 2.040078
+03/02/2023 21:36:32:INFO:[Client #4] Epoch: [1/1][0/12]	Loss: 2.301234
+03/02/2023 21:36:32:INFO:[Client #31] Epoch: [1/1][0/12]	Loss: 2.137566
+03/02/2023 21:36:32:INFO:[Client #44] Epoch: [1/1][0/12]	Loss: 2.321583
+03/02/2023 21:36:32:INFO:[Client #4] Epoch: [1/1][10/12]	Loss: 2.167168
+03/02/2023 21:36:32:INFO:[Client #31] Epoch: [1/1][10/12]	Loss: 1.979860
+03/02/2023 21:36:32:INFO:[Client #44] Epoch: [1/1][10/12]	Loss: 2.189861
+03/02/2023 21:36:32:INFO:[Client #14] Epoch: [1/1][0/12]	Loss: 2.330179
+03/02/2023 21:36:32:INFO:[Client #14] Epoch: [1/1][10/12]	Loss: 2.245011
+03/02/2023 21:36:33:INFO:[Client #36] Model trained.
+03/02/2023 21:36:33:INFO:[Client #36] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:33:INFO:[Client #4] Model trained.
+03/02/2023 21:36:33:INFO:[Server #34387] Received 0.24 MB of payload data from client #36.
+03/02/2023 21:36:33:INFO:[Client #4] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:33:INFO:[Client #31] Model trained.
+03/02/2023 21:36:33:INFO:[Client #31] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:33:INFO:[Client #14] Model trained.
+03/02/2023 21:36:33:INFO:[Client #14] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:33:INFO:[Client #44] Model trained.
+03/02/2023 21:36:33:INFO:[Client #44] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:33:INFO:[Server #34387] Received 0.24 MB of payload data from client #4.
+03/02/2023 21:36:33:INFO:[Server #34387] Received 0.24 MB of payload data from client #31.
+03/02/2023 21:36:33:INFO:[Server #34387] Received 0.24 MB of payload data from client #14.
+03/02/2023 21:36:33:INFO:[Server #34387] Received 0.24 MB of payload data from client #44.
+03/02/2023 21:36:40:INFO:[Client #2] Epoch: [1/1][0/12]	Loss: 2.318970
+03/02/2023 21:36:40:INFO:[Client #2] Epoch: [1/1][10/12]	Loss: 2.184974
+03/02/2023 21:36:40:INFO:[Client #13] Epoch: [1/1][0/12]	Loss: 2.386007
+03/02/2023 21:36:40:INFO:[Client #13] Epoch: [1/1][10/12]	Loss: 2.198926
+03/02/2023 21:36:40:INFO:[Client #39] Epoch: [1/1][0/12]	Loss: 2.235857
+03/02/2023 21:36:40:INFO:[Client #39] Epoch: [1/1][10/12]	Loss: 2.249262
+03/02/2023 21:36:41:INFO:[Client #2] Model trained.
+03/02/2023 21:36:41:INFO:[Client #2] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:41:INFO:[Client #39] Model trained.
+03/02/2023 21:36:41:INFO:[Client #39] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:41:INFO:[Client #13] Model trained.
+03/02/2023 21:36:41:INFO:[Server #34387] Received 0.24 MB of payload data from client #2.
+03/02/2023 21:36:41:INFO:[Client #13] Sent 0.24 MB of payload data to the server.
+03/02/2023 21:36:41:INFO:[Client #26] Epoch: [1/1][0/12]	Loss: 2.256011
+03/02/2023 21:36:41:INFO:[Server #34387] Received 0.24 MB of payload data from client #39.
+03/02/2023 21:36:41:INFO:[Server #34387] Received 0.24 MB of payload data from client #13.
+03/02/2023 21:36:41:INFO:[Client #26] Epoch: [1/1][10/12]	Loss: 1.976469
+03/02/2023 21:36:42:INFO:[Client #30] Epoch: [1/1][0/12]	Loss: 2.263495
+03/02/2023 21:36:42:INFO:[Client #30] Epoch: [1/1][10/12]	Loss: 2.016668
